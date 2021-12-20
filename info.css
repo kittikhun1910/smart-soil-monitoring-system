@@ -1,0 +1,156 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    list-style: none;
+    text-decoration: none;
+	font-family: 'Vollkorn' sans-serif;
+}
+body{
+    background-color: #FAF5E9;
+}
+
+.main_page{
+    display: flex;
+    position: relative;
+}
+
+.main_page .sidebar{
+    position: fixed;
+    width: 245px;
+    height: 100%;
+    background: #545454;
+    padding: 30px 0;
+}
+
+.main_page .sidebar h3{
+    color:rgb(255, 251, 251);
+    text-transform: capitalize;
+    margin-bottom: 30px;
+}
+
+.main_page .sidebar img{
+    width: 230px;
+    height: 230px;
+    margin-top: -5px;
+    margin-right: 10px;
+    margin-left: 7px;
+    margin-bottom: 5px;
+    background: ghostwhite;
+    border-radius: 2%;
+}
+
+.main_page .sidebar ul li{
+    padding: 15px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    border-top: 1px solid rgba(225, 225,225, 0.05);
+}
+
+.main_page .sidebar ul li a{
+    color: #f5efe9c9;
+    display: block;
+}
+
+.main_page .sidebar ul li a .fas{
+    width: 25px;
+
+}
+
+.main_page .sidebar ul li a .fab{
+    width: 25px;
+    
+}
+
+.main_page .sidebar ul li:hover{
+    background-color: #ddc6bb;
+}
+
+.main_page .sidebar ul li:hover a{
+    color: rgb(87, 51, 30);
+}
+
+.main_page .main_content{
+    width: 100%;
+    margin-left: 240px;
+}
+
+.main_page .main_content .header{
+    padding: 20px;
+    background: #c7b99c;
+    color:aliceblue;
+    border-bottom: 1px solid #e0e4e8;
+    margin-bottom: 5px;
+    text-align: center;
+    font-size: 30px;
+    font-weight: 700;
+
+}
+.main_page .main_content .header{
+    background: #545454;
+    width: 100%;
+    height: 170px;
+}
+
+.main_page .main_content .header:hover{
+    color: rgb(15, 37, 34);
+    background-color: grey;
+}
+
+
+.main_page .main_content .info{
+    display: flex;
+    justify-content: center;
+    margin: 15px;
+    color: black;
+    line-height: 25px;
+    margin-top: 5%;
+    border-bottom: 50px;
+    justify-content: center;
+}
+
+.main_page .main_content .title{
+    margin: 20px;
+    margin-top: 2%;
+    color: rgba(15, 10, 10, 0.767);
+    line-height: 25px;
+    border-bottom: 30px;
+    text-align: center;
+}
+
+.main_page .main_content .subtitle{
+    margin: 30px;
+    width: 75%;
+    color: #545454;
+    line-height: 25px;
+    border-bottom: 30px;
+    margin-left: 12%;
+    font-size: 18px;
+    font-weight: 300;
+}
+
+.main_page .main_content .subtitle:hover{
+    color: #1a1717;
+}
+
+.main_page .main_content .picture{
+    margin: 30px;
+    display: flex;
+    justify-content: center;
+}
+
+.main_page .main_content .picture .pic1 img{
+    width: 450px;
+    height: 250px;
+    margin: 10px;
+}
+.main_page .main_content .picture .pic2 img{
+    width: 450px;
+    height: 250px;
+    margin: 10px;
+}
+
+.main_page .main_content .subtitle p:hover{
+    margin-top: 10px;
+    background: #b0e2cdbe;
+    font-size: 25px;
+}

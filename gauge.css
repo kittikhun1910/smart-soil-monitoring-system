@@ -1,0 +1,267 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    list-style: none;
+    text-decoration: none;
+	font-family: 'Vollkorn' sans-serif;
+}
+body{
+    background-color: #FAF5E9;
+}
+
+.main_page{
+    display: flex;
+    position: relative;
+}
+
+.main_page .sidebar{
+    position: fixed;
+    width: 245px;
+    height: 100%;
+    background: #545454;
+    padding: 30px 0;
+}
+
+.main_page .sidebar h3{
+    color:#fff;
+    text-transform: capitalize;
+    margin-bottom: 30px;
+}
+
+.main_page .sidebar img{
+    width: 230px;
+    height: 230px;
+    margin-top: -5px;
+    margin-right: 10px;
+    margin-left: 7px;
+    margin-bottom: 5px;
+    background: ghostwhite;
+    border-radius: 2%;
+}
+.main_page .sidebar h4{
+    text-align: center;
+    padding: 15px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    border-top: 1px solid rgba(225, 225,225, 0.05);
+    color: #f5efe9c9;
+    display: block;
+}
+
+.main_page .sidebar ul li{
+    padding: 15px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    border-top: 1px solid rgba(225, 225,225, 0.05);
+}
+
+.main_page .sidebar ul li a{
+    color: #f5efe9c9;
+    display: block;
+}
+
+.main_page .sidebar ul li a .fas{
+    width: 25px;
+
+}
+
+.main_page .sidebar ul li a .fab{
+    width: 25px;
+    
+}
+
+.main_page .sidebar ul li:hover{
+    background-color: #ddc6bb;
+}
+
+.main_page .sidebar ul li:hover a{
+    color: rgb(87, 51, 30);
+}
+
+.main_page .main_content{
+    width: 100%;
+    margin-left: 240px;
+
+}
+
+.main_page .main_content .header{
+    padding: 20px;
+    background: #c7b99c;
+    color:aliceblue;
+    border-bottom: 1px solid #e0e4e8;
+    margin-bottom: 5px;
+    text-align: center;
+    font-size: 30px;
+    font-weight: 700;
+
+}
+
+.main_page .main_content .header{
+    background: #545454;
+    width: 100%;
+    height: 20%;
+}
+
+.main_page .main_content .header:hover{
+    color: rgb(15, 37, 34);
+    background-color: grey;
+}
+
+.main_page .main_content .container .gauge {
+    background-color: #ddc6bb;
+    border-radius: 15%;
+    margin: 10px;
+    padding-bottom: 37px;
+
+}
+.main_page .main_content .container .gauge h4, .main_page .main_content .container .gauge2 h4{
+    color: #000;
+    font-size: 14px;
+    margin-top: 15px;
+    background: #a5ee96;
+}
+
+.main_page .main_content .container .gauge3 h4, .main_page .main_content .container .gauge4 h4{
+    color: #000;
+    font-size: 14px;
+    margin-top: 15px;
+    background: #a5ee96;
+}
+
+.main_page .main_content .container .gauge:hover {
+    background-color: #a5ee96;
+    border-radius: 15%;
+    margin: 10px;
+    padding-bottom: 37px;
+    color: rgb(56, 4, 243);
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.main_page .main_content .container .gauge2 {
+    background-color: #ddc6bb;
+    border-radius: 15%;
+    margin: 10px;
+    padding-bottom: 37px;    
+}
+.main_page .main_content .container .gauge2:hover{
+    background-color: #a5ee96;
+    border-radius: 15%;
+    margin: 10px;
+    padding-bottom: 37px;
+    color: rgb(56, 4, 243);
+    font-size: 16px;
+    font-weight: 500;    
+}
+.main_page .main_content .container .gauge3, .main_page .main_content .container .gauge4 {
+    background-color: #ddc6bb;
+    border-radius: 15%;
+    margin: 10px;
+    padding-bottom: 37px;    
+}
+
+.main_page .main_content .container .gauge3:hover, .main_page .main_content .container .gauge4:hover {
+    background-color: #a5ee96;
+    border-radius: 15%;
+    margin: 10px;
+    padding-bottom: 37px;
+    color: rgb(56, 4, 243);
+    font-size: 16px;
+    font-weight: 500;    
+}
+
+.main_page .main_content .container1 .gauge5 , .main_page .main_content .container1 .gauge6{
+    background-color: #ddc6bb;
+    border-radius: 15%;
+    margin: 10px;
+    padding-bottom: 37px;
+}
+
+.main_page .main_content .container1 .gauge5 h4 , .main_page .main_content .container1 .gauge6 h4{
+    color: #000;
+    font-size: 14px;
+    margin-top: 15px;
+    background: #a5ee96;
+}
+
+.main_page .main_content .container1 .gauge7 h4 , .main_page .main_content .container1 .gauge8 h4{
+    color: #000;
+    font-size: 14px;
+    margin-top: 15px;
+    background: #a5ee96;
+}
+
+.main_page .main_content .container1 .gauge5:hover , .main_page .main_content .container1 .gauge6:hover{
+    background-color: #e67cd7c7;
+    border-radius: 15%;
+    margin: 10px;
+    padding-bottom: 37px;
+    color: rgb(56, 4, 243);
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.main_page .main_content .container1 .gauge7 , .main_page .main_content .container1 .gauge8{
+    background-color: #ddc6bb;
+    border-radius: 15%;
+    margin: 10px;
+    padding-bottom: 37px;
+}
+.main_page .main_content .container1 .gauge7:hover , .main_page .main_content .container1 .gauge8:hover{
+    background-color: #e67cd7c7;
+    border-radius: 15%;
+    margin: 10px;
+    padding-bottom: 37px;
+}
+
+.main_page .main_content .container1 .gauge7:hover , .main_page .main_content .container1 .gauge8:hover h3{
+    color: rgb(56, 4, 243);
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.container {
+    width: 1000px;
+    margin-left: 10%;
+    text-align: center;
+    position: fixed;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-bottom: 5px;
+    position: relative;
+}
+.container1 {
+    width: 1000px;
+    margin-top: 40px;
+    margin: 10%;
+    margin-left: 10%;
+    text-align: center;
+    position: fixed;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-bottom: 5px;
+    position: relative;
+}
+
+
+.gauge{
+    width: 200px;
+    height: 200px;
+    margin-bottom: 10;
+ 
+}
+
+.gauge2, .gauge3, .gauge4, .gauge5, .gauge6, .gauge7, .gauge8{
+    width: 200px;
+    height: 200px;
+    margin-bottom: 10;
+}
+
+a:link.button,
+a:active.button,
+a:visited.button,
+a:hover.button {
+    margin: 30px 5px 0 2px;
+    padding: 7px 13px;
+}

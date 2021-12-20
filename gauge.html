@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Project Information</title>
+    <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
+    <link rel="stylesheet" href="gauge.css">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/3.4.0/firebase.js"></script>
+    <script type="text/javascript">
+    // Initialize Firebase
+            var firebaseRef = {};
+            // Initialize Firebase for Push
+            var firebaseRefpush = {};
+            var firebaseRef1push = {};
+            var firebaseRef2push = {};
+            var firebaseRef3push = {};
+            var firebaseRef4push = {};
+            var firebaseRef5push = {};
+            var firebaseRef6push = {};
+            var firebaseRef7push = {};
+
+            // เพื่อสร้างตัวแปร Global ไว้ส่งค่าไปใช้ในส่วนอื่น ๆ
+            var backup_datas = {};
+
+            // เพื่อสร้างตัวแปร Global ไว้ส่งค่าไปใช้ในส่วน Push
+            var backup_dataspush = {};
+            var backup_datas1push = {};
+            var backup_datas2push = {};
+            var backup_datas3push = {};
+            var backup_datas4push = {};
+            var backup_datas5push = {};
+            var backup_datas6push = {};
+            var backup_datas7push = {};
+
+            angular.module('firebaseApp', []).service('firebaseService', function() {
+                // สร้าง Function เพื่อ init Firebase เข้ากับ app เรา
+                this.initFirebase = function() {
+                    var config = {
+                        apiKey: "AIzaSyBjrPJOwH2YJ-aAIvDdJf1PcY6_eT1Hqtc",
+                      authDomain: "soil-monitoring-system-961a3.firebaseapp.com",
+                      databaseURL: "https://soil-monitoring-system-961a3-default-rtdb.firebaseio.com"
+                    };
+                    firebase.initializeApp(config);
+                    firebaseRef = firebase.database().ref("Set");
+
+                    //ดึงค่าจาก Push
+                    firebaseRefpush = firebase.database().ref("Push/Humidity").limitToLast(50);
+                    firebaseRef1push = firebase.database().ref("Push/Moisture").limitToLast(50);
+                    firebaseRef2push = firebase.database().ref("Push/Nitrogen").limitToLast(50);
+                    firebaseRef3push = firebase.database().ref("Push/Phosphorus").limitToLast(50);
+                    firebaseRef4push = firebase.database().ref("Push/Potassium").limitToLast(50);
+                    firebaseRef5push = firebase.database().ref("Push/TemperatureC").limitToLast(50);
+                    firebaseRef6push = firebase.database().ref("Push/TemperatureF").limitToLast(50);
+                    firebaseRef7push = firebase.database().ref("Push/pH").limitToLast(50); 
+                }
+                // สร้าง Function เพื่อเก็บ event ของ Firebase
+                this.eventFirebase = function() {
+                    firebaseRef.on('value', function(data) {
+                      const datas = Object.values(data.val());
+                      // ใส่ค่าเข้าตัวแปร Global
+                      backup_datas = datas;
+
+                    console.log(datas);
+                    
+
+                        const datash = datas[0];
+                        const show = Math.round(datash*100)/100; 
+                        document.getElementById('temp').innerHTML =" Humidity " + show + " %";
+                        g1.refresh(show);
+
+                        const datash1 = datas[1];
+                        const show1 = Math.round(datash1*100)/100; 
+                        document.getElementById('temp2').innerHTML =" Moisture: " + show1 + " %";
+                        g2.refresh(show1);
+
+                        const datash2 = datas[2];
+                        const show2 = Math.round(datash2*100)/100;  
+                        document.getElementById('temp3').innerHTML =" Nitrogen: " + show2 + " PPM";
+                        g3.refresh(show2);
+
+                        const datash3 = datas[3];
+                        const show3 = Math.round(datash3*100)/100; 
+                        document.getElementById('temp4').innerHTML =" Phosphorus: " + show3 + " PPM";
+                        g4.refresh(show3);
+
+                        const datash4 = datas[4];
+                        const show4 = Math.round(datash4*100)/100;
+                        document.getElementById('temp5').innerHTML =" Potassium: " + show4 + " PPM";
+                        g5.refresh(show4);
+
+                        const datash5 = datas[5];
+                        const show5 = Math.round(datash5*100)/100;
+                        document.getElementById('temp6').innerHTML =" Temperature  " + show5 + " C*";
+                        g6.refresh(show5);
+
+                        const datash6 = datas[6];
+                        const show6 = Math.round(datash6*100)/100;
+                        document.getElementById('temp7').innerHTML =" Temperature  " + show6 + " F*";
+                        g7.refresh(show6);
+
+                        const datash7 = datas[8];
+                        const show7 = Math.round(datash7*100)/100;
+                        document.getElementById('temp8').innerHTML =" " + show7 + " pH";
+                        g8.refresh(show7);
+
+
+                        var datetime = datas[7];
+                        var date = new Date( datetime * 1000);
+                        var year    = date.getFullYear();
+                        var month   = date.getMonth();
+                        var day     = date.getDay();
+                        var hour    = date.getHours();
+                        var minute  = date.getMinutes();
+                        var seconds = date.getSeconds(); 
+                        document.getElementById('date').innerHTML = hour + ":" + minute + ":" + seconds ;
+                        document.getElementById('date1').innerHTML = "latest update: "+ day + "/" + month  + "/" + year ;
+                     
+                    })
+                    // ส่วนของการดึงค่าจาก Push
+                    firebaseRefpush.on('value', function(data) {
+                        const datas = Object.values(data.val());
+
+                        // ใส่ค่าเข้าตัวแปร Global
+                        backup_dataspush = datas;
+                        console.log(datas);
+                        const numbers = datas;
+                        const sum = numbers.reduce((total, n) => total + n, 0);
+                        sumed = Math.round((sum/50)*100)/100;
+                        console.log(sumed);
+                        const maxvalue = Math.max(...datas);
+                        const minvalue = Math.min(...datas);
+                        document.getElementById('hm').innerHTML = "Average of Humidity: " + sumed + " %";
+                        document.getElementById('hmmax').innerHTML = "Maximum of Humidity: " + maxvalue + " %";
+                        document.getElementById('hmmin').innerHTML = "Minimum of Humidity: " + minvalue + " %";
+                    })
+
+                    firebaseRef1push.on('value', function(data1) {
+                        const datas = Object.values(data1.val());
+
+                        // ใส่ค่าเข้าตัวแปร Global
+                        backup_datas1push = datas;
+                        console.log(datas);
+                        const numbers = datas;
+                        const sum = numbers.reduce((total, n) => total + n, 0);
+                        sumed1 = Math.round((sum/50)*100)/100;
+                        console.log(sumed1);
+                        const maxvalue = Math.max(...datas);
+                        const minvalue = Math.min(...datas);
+                        document.getElementById('mt').innerHTML = "Average of Moisture: " + sumed1 +" %";
+                        document.getElementById('mtmax').innerHTML = "Maximum of Moisture: " + maxvalue +" %";
+                        document.getElementById('mtmin').innerHTML = "Minimum of Moisture: " + minvalue +" %";
+                    })
+
+                    firebaseRef2push.on('value', function(data2) {
+                        const datas = Object.values(data2.val());
+
+                        // ใส่ค่าเข้าตัวแปร Global
+                        backup_datas2push = datas;
+                        console.log(datas);
+                        const numbers = datas;
+                        const sum = numbers.reduce((total, n) => total + n, 0);
+                        sumed2 = Math.round((sum/50)*100)/100;
+
+                        console.log(sumed2);
+                        document.getElementById('ntg').innerHTML = "Average of Nitrogen: " + sumed2 +" PPM(mg/Kg)";
+                        const maxvalue = Math.max(...datas);
+                        const minvalue = Math.min(...datas);
+                        document.getElementById('ntgmax').innerHTML = "Maximum of Nitrogen: " + maxvalue +" PPM(mg/Kg)";
+                        document.getElementById('ntgmin').innerHTML = "Minimum of Nitrogen: " + minvalue +" PPM(mg/Kg)";
+
+                    })
+
+                    firebaseRef3push.on('value', function(data3) {
+                        const datas = Object.values(data3.val());
+
+                        // ใส่ค่าเข้าตัวแปร Global
+                        backup_datas3push = datas;
+                        console.log(datas);
+                        const numbers = datas;
+                        const sum = numbers.reduce((total, n) => total + n, 0);
+                        sumed3 = Math.round((sum/50)*100)/100;
+                        console.log(sumed3);
+                        const maxvalue = Math.max(...datas);
+                        const minvalue = Math.min(...datas);
+                        document.getElementById('ppr').innerHTML = "Average of Phosphorus: " + sumed3 +" PPM(mg/Kg)";
+                        document.getElementById('pprmax').innerHTML = "Maximum of Phosphorus: " + maxvalue +" PPM(mg/Kg)";
+                        document.getElementById('pprmin').innerHTML = "Minimum of Phosphorus: " + minvalue +" PPM(mg/Kg)";
+                    })
+
+                    firebaseRef4push.on('value', function(data4) {
+                        const datas = Object.values(data4.val());
+
+                        // ใส่ค่าเข้าตัวแปร Global
+                        backup_datas4push = datas;
+                        console.log(datas);
+                        const numbers = datas;
+                        const sum = numbers.reduce((total, n) => total + n, 0);
+                        sumed4 = Math.round((sum/50)*100)/100;
+                        console.log(sumed4);
+                        const maxvalue = Math.max(...datas);
+                        const minvalue = Math.min(...datas);
+                        document.getElementById('pts').innerHTML = "Average of Potassium: " + sumed4 +" PPM(mg/Kg)";
+                        document.getElementById('ptsmax').innerHTML = "Maximum of Potassium: " + maxvalue +" PPM(mg/Kg)";
+                        document.getElementById('ptsmin').innerHTML = "Minimum of Potassium: " + minvalue +" PPM(mg/Kg)";
+                    })
+
+                    firebaseRef5push.on('value', function(data5) {
+                        const datas = Object.values(data5.val());
+
+                        // ใส่ค่าเข้าตัวแปร Global
+                        backup_datas5push = datas;
+                        console.log(datas);
+                        const numbers = datas;
+                        const sum = numbers.reduce((total, n) => total + n, 0);
+                        sumed5 = Math.round((sum/50)*100)/100;
+                        console.log(sumed5);
+                        const maxvalue = Math.max(...datas);
+                        const minvalue = Math.min(...datas);
+                        document.getElementById('tptc').innerHTML = "Average of TemperatureC: " + sumed5 +" Celsius";
+                        document.getElementById('tptcmax').innerHTML = "Maximum of TemperatureC: " + maxvalue +" Celsius";
+                        document.getElementById('tptcmin').innerHTML = "Minimum of TemperatureC: " + minvalue +" Celsius";
+                    })
+
+                    firebaseRef6push.on('value', function(data6) {
+                        const datas = Object.values(data6.val());
+
+                        // ใส่ค่าเข้าตัวแปร Global
+                        backup_datas6push = datas;
+                        console.log(datas);
+                        const numbers = datas;
+                        const sum = numbers.reduce((total, n) => total + n, 0);
+                        sumed6 = Math.round((sum/50)*100)/100;
+                        console.log(sumed6); 
+                        const maxvalue = Math.max(...datas);
+                        const minvalue = Math.min(...datas);    
+                        document.getElementById('tptf').innerHTML = "Average of TemperatureF: " + sumed6 +" Fahrenheit";
+                        document.getElementById('tptfmax').innerHTML = "Maximum of TemperatureF: " + maxvalue +" Fahrenheit";
+                        document.getElementById('tptfmin').innerHTML = "Minimum of TemperatureF: " + minvalue +" Fahrenheit";
+                    })
+
+                    firebaseRef7push.on('value', function(data7) {
+                        const datas = Object.values(data7.val());
+
+                        // ใส่ค่าเข้าตัวแปร Global
+                        backup_datas7push = datas;
+                        console.log(datas);
+                        const numbers = datas;
+                        const sum = numbers.reduce((total, n) => total + n, 0);
+                        sumed7 = Math.round((sum/50)*100)/100;
+                        console.log(sumed7);
+                        const maxvalue = Math.max(...datas);
+                        const minvalue = Math.min(...datas); 
+                        document.getElementById('ph').innerHTML = "Average of pH: " + sumed7 ;
+                        document.getElementById('phmax').innerHTML = "Maximum of pH: " + maxvalue ;
+                        document.getElementById('phmin').innerHTML = "Minimum of pH: " + minvalue ;
+
+                    })
+                    }
+                    this.push = function(title, content) {}
+                }).controller('firebaseCtrl', function(firebaseService) {
+                    // เรียกใช้งาน firebaseService ที่เราสร้างไว้
+                    firebaseService.initFirebase();
+                    firebaseService.eventFirebase();
+                })
+    </script>
+</head>
+
+<body>
+<div class="main_page">
+<div class="sidebar">
+    <img src="logo.png" alt="">
+    <h3>Smart Soil Monitoring System</h3>
+    <ul>
+        <li><a href="info.html"><i class="fas fa-info-circle"></i>Project Details</a></li>
+        <li><a href="gauge.html"><i class="fab fa-cloudscale"></i>Gauge Sensor</a></li>
+        <li><a href="data.html"><i class="fas fa-database"></i>Information data</a></li>
+        <li><a href="#"><i class="fas fa-chart-bar"></i>Graph data</a></li>
+        <li><a href="index.html"><i class="fas fa-sign-out-alt"></i>Logout</a></li>
+        <h4 id="date1">latest update: Monday 15 May 2021</h4>
+        <h4 id="date">10:10:10</h4>
+    </ul>
+</div>
+<div class="main_content">
+    <div class="header">
+    <h1>Smart Soil Monitoring System</h1>
+    <h2>Gauge Sensor</h2>
+    </div>  
+<body ng-app="firebaseApp">
+    <div ng-controller="firebaseCtrl">
+    </div>
+    <div class="container">
+        <div id="g1" class="gauge">
+            <h3 id='temp'>Humidity: </h3>
+            <h4 id="hm">Average of Humidity: 0000000</h4>
+            <h4 id="hmmax">Maximum of Humidity: 0000000</h4>
+            <h4 id="hmmin">Minimum of Humidity: 0000000</h4>
+            <script src="raphael-2.1.4.min.js"></script>
+                <script src="justgage.js"></script>
+                <script>
+                var g1;
+                document.addEventListener("DOMContentLoaded", function(event) {
+                    g1 = new JustGage({
+                        id: "g1",
+                        title: "Humidity",
+                        value: 1,
+                        min: 0,
+                        max: 100,
+                        gaugeWidthScale: 0.7,
+                        counter: true,
+                        titleFontColor: "#000",
+                        titleFontFamily: "Georgia",
+                        titlePosition: "below",
+                        valueFontColor: "#505050",
+                        valueFontFamily: "Georgia",
+                        titleFontFamily: "Vollkorn",
+                    });
+            
+                    });
+                </script>
+        </div>
+        <div id="g2" class="gauge2">
+            <h3 id='temp2'>Moisture: </h3>
+            <h4 id="mt">Average of Humidity: 0000000</h4>
+            <h4 id="mtmax">Maximum of Humidity: 0000000</h4>
+            <h4 id="mtmin">Minimum of Humidity: 0000000</h4>
+            <script src="raphael-2.1.4.min.js"></script>
+                <script src="justgage.js"></script>
+                <script>
+                var g2;
+                document.addEventListener("DOMContentLoaded", function(event) {
+                    g2 = new JustGage({
+                        id: "g2",
+                        title: "Moisture",
+                        value: 1,
+                        min: 0,
+                        max: 100,
+                        gaugeWidthScale: 0.7,
+                        counter: true,
+                        titleFontColor: "#000",
+                        titleFontFamily: "Georgia",
+                        titlePosition: "below",
+                        valueFontColor: "#505050",
+                        valueFontFamily: "Georgia",
+                        titleFontFamily: "Vollkorn",
+                    });
+            
+                    });
+                </script>
+        </div>
+        <div id="g3" class="gauge3">
+            <h3 id='temp3'>Nitrogen: </h3>
+            <h4 id="ntg">Average of Humidity: 0000000</h4>
+            <h4 id="ntgmax">Maximum of Humidity: 0000000</h4>
+            <h4 id="ntgmin">Minimum of Humidity: 0000000</h4>
+                <script src="raphael-2.1.4.min.js"></script>
+                    <script src="justgage.js"></script>
+                    <script>
+                    var g3;
+                    document.addEventListener("DOMContentLoaded", function(event) {
+                        g3 = new JustGage({
+                            id: "g3",
+                            title: "Nitrogen",
+                            value: 1,
+                            min: 0,
+                            max: 200,
+                            gaugeWidthScale: 0.7,
+                            counter: true,
+                            titleFontColor: "#000",
+                            titleFontFamily: "Georgia",
+                            titlePosition: "below",
+                            valueFontColor: "#505050",
+                            valueFontFamily: "Georgia",
+                            titleFontFamily: "Vollkorn",
+                        });
+                    
+                        });
+                    </script>
+        </div>
+        <div id="g4" class="gauge4">
+            <h3 id='temp4'>Phosphorus: </h3>
+            <h4 id="ppr">Average of Humidity: 0000000</h4>
+            <h4 id="pprmax">Maximum of Humidity: 0000000</h4>
+            <h4 id="pprmin">Minimum of Humidity: 0000000</h4>
+                <script src="raphael-2.1.4.min.js"></script>
+                    <script src="justgage.js"></script>
+                    <script>
+                    var g4;
+                    document.addEventListener("DOMContentLoaded", function(event) {
+                        g4 = new JustGage({
+                            id: "g4",
+                            title: "Phosphorus",
+                            value: 1,
+                            min: 0,
+                            max: 14,
+                            gaugeWidthScale: 0.7,
+                            counter: true,
+                            titleFontColor: "#000",
+                            titleFontFamily: "Georgia",
+                            titlePosition: "below",
+                            valueFontColor: "#505050",
+                            valueFontFamily: "Georgia",
+                            titleFontFamily: "Vollkorn",
+                        });
+                    
+                        });
+                    </script>
+        </div>
+    </div>
+    <div class="container1">
+        <div id="g5" class="gauge5">
+            <h3 id='temp5'>Potassium: </h3>
+            <h4 id="pts">Average of Humidity: 0000000</h4>
+            <h4 id="ptsmax">Maximum of Humidity: 0000000</h4>
+            <h4 id="ptsmin">Minimum of Humidity: 0000000</h4>
+                <script src="raphael-2.1.4.min.js"></script>
+                    <script src="justgage.js"></script>
+                    <script>
+                    var g5;
+                    document.addEventListener("DOMContentLoaded", function(event) {
+                        g5 = new JustGage({
+                            id: "g5",
+                            title: "Potassium",
+                            value: 1,
+                            min: 0,
+                            max: 200,
+                            gaugeWidthScale: 0.7,
+                            counter: true,
+                            titleFontColor: "#000",
+                            titleFontFamily: "Georgia",
+                            titlePosition: "below",
+                            valueFontColor: "#505050",
+                            valueFontFamily: "Georgia",
+                            titleFontFamily: "Vollkorn",
+                        });
+                    
+                        });
+                    </script>
+        </div>
+        <div id="g6" class="gauge6">
+            <h3 id='temp6'>Temperature: </h3>
+            <h4 id="tptc">Average of Humidity: 0000000</h4>
+            <h4 id="tptcmax">Maximum of Humidity: 0000000</h4>
+            <h4 id="tptcmin">Minimum of Humidity: 0000000</h4>
+                <script src="raphael-2.1.4.min.js"></script>
+                    <script src="justgage.js"></script>
+                    <script>
+                    var g6;
+                    document.addEventListener("DOMContentLoaded", function(event) {
+                        g6 = new JustGage({
+                            id: "g6",
+                            title: "Temperature Celsius",
+                            value: 1,
+                            min: 0,
+                            max: 50,
+                            gaugeWidthScale: 0.7,
+                            counter: true,
+                            titleFontColor: "#000",
+                            titleFontFamily: "Georgia",
+                            titlePosition: "below",
+                            valueFontColor: "#505050",
+                            valueFontFamily: "Georgia",
+                            titleFontFamily: "Vollkorn",
+                        });
+                    
+                        });
+                    </script>
+        </div>
+        <div id="g7" class="gauge7">
+            <h3 id='temp7'>Temperature: </h3>
+            <h4 id="tptf">Average of Humidity: 0000000</h4>
+            <h4 id="tptfmax">Maximum of Humidity: 0000000</h4>
+            <h4 id="tptfmin">Minimum of Humidity: 0000000</h4>
+                <script src="raphael-2.1.4.min.js"></script>
+                    <script src="justgage.js"></script>
+                    <script>
+                    var g7;
+                    document.addEventListener("DOMContentLoaded", function(event) {
+                        g7 = new JustGage({
+                            id: "g7",
+                            title: "Temperature Fahrenheit",
+                            value: 1,
+                            min: 0,
+                            max: 300,
+                            gaugeWidthScale: 0.7,
+                            counter: true,
+                            titleFontColor: "#000",
+                            titleFontFamily: "Georgia",
+                            titlePosition: "below",
+                            valueFontColor: "#505050",
+                            valueFontFamily: "Georgia",
+                            titleFontFamily: "Vollkorn",
+                        });
+                    
+                        });
+                    </script>
+        </div>
+        <div id="g8" class="gauge8">
+            <h3 id='temp8'> pH: </h3>
+            <h4 id="ph">Average of Humidity: 0000000</h4>
+            <h4 id="phmax">Maximum of Humidity: 0000000</h4>
+            <h4 id="phmin">Minimum of Humidity: 0000000</h4>
+                <script src="raphael-2.1.4.min.js"></script>
+                    <script src="justgage.js"></script>
+                    <script>
+                    var g8;
+                    document.addEventListener("DOMContentLoaded", function(event) {
+                        g8 = new JustGage({
+                            id: "g8",
+                            title: "pH",
+                            value: 1,
+                            min: 0,
+                            max: 14,
+                            gaugeWidthScale: 0.7,
+                            counter: true,
+                            titleFontColor: "#000",
+                            titleFontFamily: "Georgia",
+                            titlePosition: "below",
+                            valueFontColor: "#505050",
+                            valueFontFamily: "Georgia",
+                            titleFontFamily: "Vollkorn",
+                        });
+                    
+                        });
+                    </script>
+        </div>
+    </div>
+</div>
+</div>        
+</div>
+</body>
+</html>

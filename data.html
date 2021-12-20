@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Project Information</title>
+    <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
+    <link rel="stylesheet" href="data.css">
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/3.4.0/firebase.js"></script>
+
+    <script>
+        // Initialize Firebase
+        var firebaseRefpush = {};
+        var firebaseRef1push = {};
+        var firebaseRef2push = {};
+        var firebaseRef3push = {};
+        var firebaseRef4push = {};
+        var firebaseRef5push = {};
+        var firebaseRef6push = {};
+        var firebaseRef7push = {};
+        var firebaseRef8push = {};
+
+        // เพื่อสร้างตัวแปร Global ไว้ส่งค่าไปใช้ในส่วนอื่น ๆ
+        var backup_datas = {};
+        var backup_datas1 = {};
+        var backup_datas2 = {};
+        var backup_datas3 = {};
+        var backup_datas4 = {};
+        var backup_datas5 = {};
+        var backup_datas6 = {};
+        var backup_datas7 = {};
+        var backup_datas8 = {};
+
+        angular.module('firebaseApp', []).service('firebaseService', function() {
+            // สร้าง Function เพื่อ init Firebase เข้ากับ app เรา
+            this.initFirebase = function() {
+                var config = {
+                    apiKey: "AIzaSyBjrPJOwH2YJ-aAIvDdJf1PcY6_eT1Hqtc",
+                  authDomain: "soil-monitoring-system-961a3.firebaseapp.com",
+                  databaseURL: "https://soil-monitoring-system-961a3-default-rtdb.firebaseio.com"
+                };
+                firebase.initializeApp(config);
+                firebaseRefpush = firebase.database().ref("Push/Humidity").limitToLast(10);
+                firebaseRef1push = firebase.database().ref("Push/Moisture").limitToLast(10);
+                firebaseRef2push = firebase.database().ref("Push/Nitrogen").limitToLast(10);
+                firebaseRef3push = firebase.database().ref("Push/Phosphorus").limitToLast(10);
+                firebaseRef4push = firebase.database().ref("Push/Potassium").limitToLast(10);
+                firebaseRef5push = firebase.database().ref("Push/TemperatureC").limitToLast(10);
+                firebaseRef6push = firebase.database().ref("Push/TemperatureF").limitToLast(10);
+                firebaseRef7push = firebase.database().ref("Push/pH").limitToLast(10);
+                firebaseRef8push = firebase.database().ref("Set");    
+            }
+            // สร้าง Function เพื่อเก็บ event ของ Firebase
+            this.eventFirebase = function() {
+                firebaseRefpush.on('value', function(data) {
+                  const datas = Object.values(data.val());
+
+                  // ใส่ค่าเข้าตัวแปร Global
+                  backup_datas = datas;
+                console.log(datas);
+                const numbers = datas;
+                const sum = numbers.reduce((total, n) => total + n, 0);
+                sumed = sum/10;
+                console.log(sumed);
+                document.getElementById('ni').innerHTML = "Average of Humidity: " + sumed + " %";
+                })
+
+                firebaseRef1push.on('value', function(data1) {
+                  const datas = Object.values(data1.val());
+
+                  // ใส่ค่าเข้าตัวแปร Global
+                backup_datas1 = datas;
+                console.log(datas);
+                const numbers = datas;
+                const sum = numbers.reduce((total, n) => total + n, 0);
+                sumed1 = sum/10;
+                console.log(sumed1);
+                document.getElementById('ni1').innerHTML = "Average of Moisture: " + sumed1 +" %";
+                })
+
+                firebaseRef2push.on('value', function(data2) {
+                  const datas = Object.values(data2.val());
+
+                  // ใส่ค่าเข้าตัวแปร Global
+                backup_datas2 = datas;
+                console.log(datas);
+                const numbers = datas;
+                const sum = numbers.reduce((total, n) => total + n, 0);
+                sumed2 = sum/10;
+                console.log(sumed2);
+                document.getElementById('ni2').innerHTML = "Average of Nitrogen: " + sumed2 +" PPM(mg/Kg)";
+                })
+
+                firebaseRef3push.on('value', function(data3) {
+                  const datas = Object.values(data3.val());
+
+                  // ใส่ค่าเข้าตัวแปร Global
+                backup_datas3 = datas;
+                console.log(datas);
+                const numbers = datas;
+                const sum = numbers.reduce((total, n) => total + n, 0);
+                sumed3 = sum/10;
+                console.log(sumed3);
+                document.getElementById('ni3').innerHTML = "Average of Phosphorus: " + sumed3 +" PPM(mg/Kg)";
+                })
+
+                firebaseRef4push.on('value', function(data4) {
+                  const datas = Object.values(data4.val());
+
+                  // ใส่ค่าเข้าตัวแปร Global
+                backup_datas4 = datas;
+                console.log(datas);
+                const numbers = datas;
+                const sum = numbers.reduce((total, n) => total + n, 0);
+                sumed4 = sum/10;
+                console.log(sumed4);
+                document.getElementById('ni4').innerHTML = "Average of Potassium: " + sumed4 +" PPM(mg/Kg)";
+                })
+
+                firebaseRef5push.on('value', function(data5) {
+                  const datas = Object.values(data5.val());
+
+                  // ใส่ค่าเข้าตัวแปร Global
+                backup_datas5 = datas;
+                console.log(datas);
+                const numbers = datas;
+                const sum = numbers.reduce((total, n) => total + n, 0);
+                sumed5 = sum/10;
+                console.log(sumed5);
+                document.getElementById('ni5').innerHTML = "Average of TemperatureC: " + sumed5 +" C*";
+                })
+
+                firebaseRef6push.on('value', function(data6) {
+                  const datas = Object.values(data6.val());
+
+                  // ใส่ค่าเข้าตัวแปร Global
+                backup_datas6 = datas;
+                console.log(datas);
+                const numbers = datas;
+                const sum = numbers.reduce((total, n) => total + n, 0);
+                sumed6 = sum/10;
+                console.log(sumed6);
+                document.getElementById('ni6').innerHTML = "Average of TemperatureF: " + sumed6 +" F*";
+                })
+
+                firebaseRef7push.on('value', function(data7) {
+                  const datas = Object.values(data7.val());
+
+                  // ใส่ค่าเข้าตัวแปร Global
+                backup_datas7 = datas;
+                console.log(datas);
+                const numbers = datas;
+                const sum = numbers.reduce((total, n) => total + n, 0);
+                sumed7 = sum/10;
+                console.log(sumed7);
+                document.getElementById('ni7').innerHTML = "Average of pH: " + sumed7 ;
+                })
+                
+                firebaseRef8push.on('value', function(data) {
+                  const datas = Object.values(data.val());
+                var datetime = datas[7];
+                var date = new Date( datetime * 1000);
+                var year    = date.getFullYear();
+                var month   = date.getMonth();
+                var day     = date.getDay();
+                var hour    = date.getHours();
+                var minute  = date.getMinutes();
+                var seconds = date.getSeconds(); 
+                document.getElementById('date').innerHTML = hour + ":" + minute + ":" + seconds ;
+                document.getElementById('date1').innerHTML = "latest update: "+ day + "/" + month  + "/" + year ;
+                })
+            }            
+            this.push = function(title, content) {}
+        }).controller('firebaseCtrl', function(firebaseService) {
+            // เรียกใช้งาน firebaseService ที่เราสร้างไว้
+            firebaseService.initFirebase();
+            firebaseService.eventFirebase();
+        })
+    </script>
+</head>
+
+<body ng-app="firebaseApp">
+<div class="main_page" ng-controller="firebaseCtrl">
+    <div class="sidebar">
+        <img src="logo.png" alt="">
+        <h3>Smart Soil Monitoring System</h3>
+        <ul>
+            <li><a href="info.html"><i class="fas fa-info-circle"></i>Project Details</a></li>
+            <li><a href="gauge.html"><i class="fab fa-cloudscale"></i>Gauge Sensor</a></li>
+            <li><a href="data.html"><i class="fas fa-database"></i>Information data</a></li>
+            <li><a href="#"><i class="fas fa-chart-bar"></i>Graph data</a></li>
+            <li><a href="index.html"><i class="fas fa-sign-out-alt"></i>Logout</a></li>
+            <h4 id="date1">latest update: Monday 15 May 2021</h4>
+            <h4 id="date">10:10:10</h4>
+        </ul>
+    </div>
+    <div class="main_content">
+        <div class="header">
+        <h1>Smart Soil Monitoring System</h1>
+        <h2>Information data</h2>
+        </div>
+    <div class="data">
+        <h2> ความชื้นในดินคืออะไร？</h2>
+        <h4>What is soil moisture？</h4>
+        <img src="waterstep.jpg" alt="" width="500px" height="350px">
+        <p class="moisture_th">ความชื้นในดิน (Soil Moisture) มีความหมายที่แตกต่างกันในแต่ละความคิดคน 
+        ตัวอย่างเช่นแนวคิดของเกษตรกรเกี่ยวกับ ความชื้น ในดินจะแตกต่างจากผู้จัดการทรัพยากรน้ำ
+        หรือนักพยากรณ์อากาศ อย่างไรก็ตามโดยทั่วไปความชื้นในดินคือน้ำที่กักเก็บไว้ในช่องว่างระหว่าง
+        อนุภาคของดิน ความชื้นในดินคือน้ำที่อยู่ในชั้นบนของดิน 10 ซม. ในขณะที่ความชื้นในดินบริเวณราก
+        คือน้ำที่มีอยู่ในพืช ซึ่งโดยทั่วไปจะอยู่ในดินชั้นบน 200 ซม.</p>
+        <p class="moisture_eng">Soil Moisture has different meanings in different people's minds. 
+        For example, a farmer's concept of soil moisture differs from a water resource manager. 
+        or a weather forecaster Generally, however, soil moisture is water that is retained in 
+        the spaces between soil particles. Soil moisture is water that is 10 cm in the top layer of soil, 
+        while soil moisture is at the roots. is the water contained in plants which is generally 
+        in the topsoil of 200 cm.</p>
+        <h3>ความสำคัญของความชื้นในดินคืออะไร?</h3>
+        <h4>What is the importance of soil moisture?</h4>
+        <p class="moisture_th_1">ปริมาณความชื้นหรือน้ำในดินเป็นสิ่งสำคัญที่ต้องรู้เนื่องจาก</p>
+          <li id="ms">* น้ำในดินทำหน้าที่เป็นตัวทำละลายและเป็นพาหะของสารอาหารเพื่อการเจริญเติบโตของพืช</li>
+          <li id="ms">* ผลผลิตของพืชมักขึ้นอยู่กับปริมาณน้ำที่มีมากกว่าสารอาหารอื่น ๆ</li>
+          <li id="ms">* น้ำในดินทำหน้าที่เป็นสารอาหารด้วยตัวมันเอง</li>
+          <li id="ms">* น้ำในดินทำหน้าที่ควบคุมอุณหภูมิของดิน</li>
+          <li id="ms">* กระบวนการขึ้นรูปของดินและการผุกร่อนขึ้นอยู่กับน้ำ</li>
+          <li id="ms">* จุลินทรีย์ต้องการน้ำสำหรับทำกระบวนการเมทาบอลิซึม (metabolism)</li>
+          <li id="ms">* น้ำในดินช่วยในการทำปฏิกิริยาเคมีและชีวภาพของดิน</li>
+          <li id="ms">* น้ำในดินเป็นองค์ประกอบหลักในการเติบโตของพืช</li>
+          <li id="ms">* น้ำจำเป็นต่อการสังเคราะห์แสง</li>
+
+          <div class="picture">
+            <div class="pic1">
+                <img src="veggies_mos.jpg"  alt="html5">
+            </div>
+            <div class="pic2">
+                <img src="corn.jpeg" alt="html5">
+            </div>
+          </div>
+
+        <p class="moisture_eng_1">The amount of moisture or water in the soil is important to know because</p>
+          <li id="ms">* Soil water acts as a solvent and a carrier of nutrients for plant growth</li>
+          <li id="ms">* The yield of a plant is often more dependent on water content than other nutrients.</li>
+          <li id="ms">* Soil water acts as a nutrient by itself</li>
+          <li id="ms">* Soil water controls soil temperature</li>
+          <li id="ms">* Soil forming and weathering processes depend on water</li>
+          <li id="ms">* Microorganisms need water for their metabolism. (metabolism)</li>
+          <li id="ms">* Soil water helps the soil's chemical and biological reactions</li>
+          <li id="ms">* Soil water is the main component of plant growth</li>
+          <li id="ms">* Water is essential for photosynthesis</li>
+
+        <h3>ระดับความชื้นที่พืชสามารถรับได้จะคิดเป็นเปอร์เซ็นต์ ดังนี้</h3>
+        <h4>The moisture level that a plant can accept is expressed as a percentage:</h4>
+        
+        <img src="rot_root.png" alt="html5" width="400px" height="220px" class="pic3">
+        <p class="moisture_th_2">1.ความชื้น 80% - 100% : สภาวะอันตรายต่อพืช</p>
+          <li id="ms">* ถ้ามีความชื้นสูงในระดับนี้เป็นเวลานาน มีโอกาสสูงมากที่จะทำให้รากเน่า หรือเกิดเชื้อราขึ้นได้</li>
+        <p class="moisture_eng_2">1.Moisture 80% - 100% : conditions harmful to plants</p>
+          <li id="ms">* If the Moisture is high at this level for a long time There is a very high 
+            chance of root rot. or mold can occur.</li>
+
+          <img src="wet_soil.jpeg" alt="html5" width="400px" height="220px" class="pic3">
+          <p class="moisture_th_2">2.ความชื้น 70% - 79% : สภาวะดินแฉะ </p>
+            <li id="ms">* หากไม่ควบคุมให้ดี หรือปล่อยเป็นเวลานานก็อาจเข้าสู่สภาวะอันตรายได้</li>
+          <p class="moisture_th_2">2.Moisture 70% - 79% : wet soil condition </p>
+            <li id="ms">* if not well controlled Or leave it for a long time, it may enter a dangerous state.</li>
+
+          <img src="green_plant.jpg" alt="html5" width="400px" height="220px" class="pic3">
+          <p class="moisture_th_2">3.ความชื้น 50% -69% : สภาวะที่พืชชอบ </p>
+            <li id="ms">* เนื่องจากพืชจะมีการเจริญเติบโตได้ดีที่สุดในสภาวะนี้</li>
+          <p class="moisture_th_2">3. Moisture 50% -69% : conditions that plants like </p>
+            <li id="ms">* as plants grow best in these conditions</li>
+
+          <img src="dry_soil.jpg" alt="html5" width="400px" height="220px" class="pic3">
+            <p class="moisture_th_2">4.ความชื้น 40% - 49% : สภาวะแห้ง </p>
+              <li id="ms">* ควรเพิ่มความชื้นให้แก่ดิน เพื่อให้พืชเจริญเติบโตได้</li>
+            <p class="moisture_th_2">4.Moisture 40% - 49%  : dry condition </p>
+              <li id="ms">* should increase soil moisture. for plants to grow</li>
+
+          <img src="dry_died.jpg" alt="html5" width="400px" height="220px" class="pic3">
+            <p class="moisture_th_2">5.ความชื้น 0% - 39% : สภาวะวิกฤติ </p>
+              <li id="ms">* สามารถทำให้พืชแห้งและเหี่ยวเฉาตายได้</li>
+            <p class="moisture_th_2">5.Moisture 0 % - 39%  : critical condition </p>
+              <li id="ms">* can dry and wither plants</li>
+                
+    </div>
+    <div class="data2">
+        <h2> ความชื้นในดินคืออะไร？</h2>
+        <h4>What is soil moisture？</h4>
+    </div>
+    </div>
+
+</div>
+</body>
+</html>
