@@ -1,0 +1,144 @@
+*{
+	font-family: 'Vollkorn' sans-serif;
+}
+body{
+    background-color: #FAF5E9;
+}
+
+body .from_box{
+    margin: 100px auto;
+    width: 400px;
+    background-color: #fff;
+    padding: 55px;
+    border-radius: 15%;
+}
+
+.from_box .from_logo{
+    width: 150px;
+    height: 150px;
+    margin: 0 auto;
+    margin-bottom: 50px;
+}
+.from_box .from_logo img{
+    width: 100%;
+}
+
+.from_box .from_title, .from_box .from_subtitle{
+    text-align: center;
+	color: #505050;
+}
+
+.from_box .from_title{
+    font-size: 30px;
+	font-weight: 700;
+
+}
+.from_box .from_subtitle{
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+
+.from_box .from_username svg{
+        height: 35px;
+        margin-bottom: -10px;
+        margin-left: 0px;
+        margin-right: 0px;
+}
+
+.from_box .from_password svg{
+    height: 35px;
+    margin-bottom: -10px;
+    margin-left: 0px;
+    margin-right: 0px;
+}
+.from_box .from_username{
+    display: block;
+    background-color: #FAF5E9;
+	border-radius: 30px;
+	border: 1px solid rgba(0, 0, 0, 0.2);
+	margin: 20px auto;
+    text-align: center;
+}
+
+.from_box .from_password{
+    display: block;
+    background-color: #FAF5E9;
+	border-radius: 30px;
+	border: 1px solid rgba(0, 0, 0, 0.2);
+	margin: 20px auto;
+    text-align: center;
+}
+
+.from_box .from_password input[type="password"]{
+	border-radius: 5px;
+	border: 1px solid rgba(11, 37, 1, 0.205);
+    text-align: center;
+    width: 70%;
+    height: 34px;
+    margin-bottom: 0px ;
+    font-size: 17px;
+}
+
+.from_box .from_username input[type="text"]{
+	border-radius: 5px;
+	border: 1px solid rgba(11, 37, 1, 0.205);
+    text-align: center;
+    width: 70%;
+    height: 34px;
+    margin-bottom: 0px ;
+    font-size: 20px;
+}
+
+.from_box .from_username input[type="text"]:hover{
+    background-color:rgb(224, 235, 195);
+    width: 80%;
+}
+.from_box .from_password input[type="password"]:hover{
+    background-color:rgb(224, 235, 195);
+    width: 80%;
+}
+
+.from_box .from_submit input[type="submit"]{
+    border: 0;
+    background: #16d355;
+    display: block;
+    margin: 20px auto;
+    text-align: center;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    padding: 12px 10px;
+    width: 50%;
+    outline: none;
+    color: #000;
+    border-radius: 0.25px;
+    transition: 0.25px;
+    cursor: pointer;
+    border-radius: 25px;
+}
+
+.from_box .from_submit input[type="submit"]:hover{
+    background:  #e6b61bec;
+    width: 65%;
+    height: 50px;
+}
+
+.from_box .from_forgotpw button[type="submit"]{
+    border: 0;
+    background: #0d1ce7;
+    display: block;
+    margin: 20px auto;
+    text-align: center;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    padding: 12px 10px;
+    width: 40%;
+    outline: none;
+    color: rgb(255, 255, 255);
+    border-radius: 0.25px;
+    transition: 0.25px;
+    cursor: pointer;
+    border-radius: 25px;
+    
+}
+
+.from_box .from_forgotpw button[type="submit"]:hover{
+    background: #e61b1bec;
+}
