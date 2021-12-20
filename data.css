@@ -184,6 +184,11 @@ body{
     display: flex;
     justify-content: center;
 }
+.main_page .main_content .data2 .picture{
+    margin: 30px;
+    display: flex;
+    justify-content: center;
+}
 
 .main_page .main_content .picture .pic1 img, .main_page .main_content .picture .pic2 img{
     margin: 10px;
@@ -248,6 +253,18 @@ body{
     margin-left: calc(28%);
     justify-content: center;
     border-radius: 10px;
+}
+
+.main_page .main_content .data2 li{
+    margin: 10px;
+    width: 75%;
+    color: #1a1313;
+    line-height: 25px;
+    border-bottom: 30px;
+    margin-left: 25%;
+    font-size: 18px;
+    font-weight: 500;
+    text-align: left;
 }
 
 
