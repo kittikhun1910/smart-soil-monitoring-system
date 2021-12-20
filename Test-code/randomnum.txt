@@ -1,0 +1,61 @@
+
+void setup() {
+  Serial.begin(115200);
+  randomSeed(analogRead(0));
+}
+
+void loop() {
+    delay(5000);
+    // random ph begin 0 - 14 
+   int int_ph = random(0,14);
+   float flo_ph = random(0, 100);
+   float cov_ph = flo_ph /100;
+   float ph = int_ph + cov_ph;
+
+
+   // random Nitrogen  (0 - 200 +-) มก./กก. = มิลลิกรัมต่อกิโลกรัม = มก./1000 กรัม (เท่ากับ 1 ppm) 
+   //mg/kg = milligram per kilogram = mg/1000 grams (same as 1 ppm)
+
+   int int_N = random(0,200);
+   float flo_N = random(0, 100);
+   float cov_N = flo_N /100;
+   float nitrogen = int_N + cov_N;
+
+   // random Phosphorus   (0 - 14 +-) มก./กก. = มิลลิกรัมต่อกิโลกรัม = มก./1000 กรัม (เท่ากับ 1 ppm) 
+   //mg/kg = milligram per kilogram = mg/1000 grams (same as 1 ppm)
+
+   int int_P = random(0,14);
+   float flo_P = random(0, 100);
+   float cov_P = flo_P /100;
+   float phosphorus  = int_P + cov_P;
+
+   // random Potassium   (0 - 200 +-) มก./กก. = มิลลิกรัมต่อกิโลกรัม = มก./1000 กรัม (เท่ากับ 1 ppm) 
+   //mg/kg = milligram per kilogram = mg/1000 grams (same as 1 ppm)
+
+   int int_K = random(0,200);
+   float flo_K = random(0, 100);
+   float cov_K = flo_K /100;
+   float potassium  = int_K + cov_K;
+
+  
+    //เเสดงค่า pH
+    Serial.print("pH = ");
+    Serial.print(ph);
+    Serial.print(" pH\n");
+    
+    //เเสดงค่า Nitogen
+    Serial.print("Nitogen = ");
+    Serial.print(nitrogen);
+    Serial.print(" PPM\n");
+    
+    //เเสดงค่า Phosphorus
+    Serial.print("Phosphorus = ");
+    Serial.print(phosphorus);
+    Serial.print(" PPM\n");
+
+    //เเสดงค่า Potassium
+    Serial.print("Potassium = ");
+    Serial.print(potassium);
+    Serial.print(" PPM\n\n");
+    
+  }

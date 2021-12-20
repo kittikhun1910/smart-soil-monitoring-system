@@ -1,0 +1,40 @@
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/3.4.0/firebase.js"></script>
+
+        <script>
+            // Initialize Firebase
+            var firebaseRef = {};
+            // เพื่อสร้างตัวแปร Global ไว้ส่งค่าไปใช้ในส่วนอื่น ๆ
+            var backup_datas = {};
+
+            angular.module('firebaseApp', []).service('firebaseService', function() {
+                // สร้าง Function เพื่อ init Firebase เข้ากับ app เรา
+                this.initFirebase = function() {
+                    var config = {
+                        apiKey: "AIzaSyBjrPJOwH2YJ-aAIvDdJf1PcY6_eT1Hqtc",
+                      authDomain: "soil-monitoring-system-961a3.firebaseapp.com",
+                      databaseURL: "https://soil-monitoring-system-961a3-default-rtdb.firebaseio.com"
+                    };
+                    firebase.initializeApp(config);
+                    firebaseRef = firebase.database().ref("idpass");    
+                }
+                // สร้าง Function เพื่อเก็บ event ของ Firebase
+                this.eventFirebase = function() {
+                    firebaseRef.on('value', function(data) {
+                      const datas = Object.values(data.val());
+
+                      // ใส่ค่าเข้าตัวแปร Global
+                      backup_datas = datas;
+
+                    console.log(datas);
+                    
+                        document.getElementById('temp').innerHTML = datas[0]["id"];
+                    })
+                }
+                this.push = function(title, content) {}
+            }).controller('firebaseCtrl', function(firebaseService) {
+                // เรียกใช้งาน firebaseService ที่เราสร้างไว้
+                firebaseService.initFirebase();
+                firebaseService.eventFirebase();
+            })
+        </script>
