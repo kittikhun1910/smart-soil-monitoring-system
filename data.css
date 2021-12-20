@@ -102,6 +102,12 @@ body{
     font-size: 20px;
 }
 
+.main_page .main_content .data2{
+    margin-left: 30px;
+    text-align: center;
+    font-size: 20px;   
+}
+
 .main_page .sidebar h4{
     text-align: center;
     padding: 15px;
@@ -208,3 +214,42 @@ body{
     font-weight: bolder;
     text-align: left;
 }
+
+.main_page .main_content .data2 .ph_th{
+    margin: 32px;
+    width: 75%;
+    color: #1a1313;
+    line-height: 25px;
+    border-bottom: 30px;
+    margin-left: 12%;
+    font-size: 18px;
+    font-weight: 300;
+    text-align: left;
+}
+.main_page .main_content .data2 .ph_eng{
+    margin: 32px;
+    width: 75%;
+    color: #1a1313;
+    line-height: 25px;
+    border-bottom: 30px;
+    margin-left: 12%;
+    font-size: 18px;
+    font-weight: 300;
+    text-align: left;
+}
+
+.main_page .main_content .data2 img{
+    display: flex;
+    margin-top: 5%;
+    border-bottom: 50px;
+    justify-items: center;
+    border-radius: 0%;
+    margin: 30px;
+    margin-left: calc(28%);
+    justify-content: center;
+    border-radius: 10px;
+}
+
+
+
+
