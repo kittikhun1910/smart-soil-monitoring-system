@@ -190,6 +190,12 @@ body{
     justify-content: center;
 }
 
+.main_page .main_content .data3 .picture{
+    margin: 30px;
+    display: flex;
+    justify-content: center;
+}
+
 .main_page .main_content .picture .pic1 img, .main_page .main_content .picture .pic2 img{
     margin: 10px;
     width: 350px;
@@ -261,19 +267,57 @@ body{
     color: #1a1313;
     line-height: 25px;
     border-bottom: 30px;
-    margin-left: 20%;
+    margin-left: 15%;
     font-size: 18px;
     font-weight: 500;
     text-align: left;
-    width: 800px;
+    width: 850px;
 }
 
 .main_page {
     width: 1517px;
 }
-
+.main_page .main_content{
+    background: rgb(225, 228, 203);
+}
 .main_page .main_content .data2 h3{
     margin-top: 15px;
     color: rgb(48, 24, 12);
+}
+
+.main_page .main_content .data3 img{
+    display: flex;
+    margin-top: 5%;
+    border-bottom: 50px;
+    justify-items: center;
+    border-radius: 0%;
+    margin: 30px;
+    margin-left: calc(28%);
+    justify-content: center;
+    border-radius: 10px;
+}
+
+.main_page .main_content .data3 .npk_th{
+    margin: 32px;
+    width: 75%;
+    color: #1a1313;
+    line-height: 25px;
+    border-bottom: 30px;
+    margin-left: 12%;
+    font-size: 18px;
+    font-weight: 300;
+    text-align: left;
+}
+
+.main_page .main_content .data3 .npk_eng{
+    margin: 32px;
+    width: 75%;
+    color: #1a1313;
+    line-height: 25px;
+    border-bottom: 30px;
+    margin-left: 12%;
+    font-size: 18px;
+    font-weight: 300;
+    text-align: left;
 }
 
