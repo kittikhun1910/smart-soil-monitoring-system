@@ -261,13 +261,19 @@ body{
     color: #1a1313;
     line-height: 25px;
     border-bottom: 30px;
-    margin-left: 25%;
+    margin-left: 20%;
     font-size: 18px;
     font-weight: 500;
     text-align: left;
+    width: 800px;
 }
 
 .main_page {
-    width: 1535px;
+    width: 1517px;
+}
+
+.main_page .main_content .data2 h3{
+    margin-top: 15px;
+    color: rgb(48, 24, 12);
 }
 
