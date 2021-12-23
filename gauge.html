@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Gauge Sensors</title>
+    <title> Gauge Sensors </title>
     <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
     <link rel="stylesheet" href="gauge.css">
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular.js"></script>
@@ -110,12 +110,39 @@
                         var date = new Date( datetime * 1000);
                         var year    = date.getFullYear();
                         var month   = date.getMonth();
-                        var day     = date.getDay();
+                        var dateday = date.getDay();
+
+                        var day     = date.getDate();
+                        if(dateday == 0){
+                            var setdate = "SUNDAY"
+                        }
+                        else if(dateday == 1){
+                            var setdate = "MONDAY"
+                        }
+                        else if(dateday == 2){
+                            var setdate = "TUESDAY"
+                        }
+                        else if(dateday == 3){
+                            var setdate = "WEDNESDAY"
+                        }
+                        else if(dateday == 4){
+                            var setdate = "THURSDAY"
+                        }
+                        else if(dateday == 5){
+                            var setdate = "FRIDAY"
+                        }
+                        else if(dateday == 6){
+                            var setdate = "SATURDAY"
+                        }
+                        else{
+                            var setdate = "No data"
+                        }
+
                         var hour    = date.getHours();
                         var minute  = date.getMinutes();
                         var seconds = date.getSeconds(); 
                         document.getElementById('date').innerHTML = hour + ":" + minute + ":" + seconds ;
-                        document.getElementById('date1').innerHTML = "latest update: "+ day + "/" + month  + "/" + year ;
+                        document.getElementById('date1').innerHTML = "latest update: "+ setdate +" / "+ day+ "/ " + month  + "/ " + year ;
                      
                     })
                     // ส่วนของการดึงค่าจาก Push
