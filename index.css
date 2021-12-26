@@ -2,7 +2,7 @@
 	font-family: 'Vollkorn' sans-serif;
 }
 body{
-    background-color: #FAF5E9;
+    background-color: #222629;
     width: 100%;
     justify-content: center;
 }
@@ -10,7 +10,7 @@ body{
 body .from_box{
     margin: 100px auto;
     width: 400px;
-    background-color: #fff;
+    background-color: rgba(255, 255, 255, 0.637);
     padding: 55px;
     border-radius: 15%;
 }
@@ -27,7 +27,7 @@ body .from_box{
 
 .from_box .from_title, .from_box .from_subtitle{
     text-align: center;
-	color: #505050;
+	color: #fff;
 }
 
 .from_box .from_title{
@@ -55,7 +55,7 @@ body .from_box{
 }
 .from_box .from_username{
     display: block;
-    background-color: #FAF5E9;
+    background-color: #faf5e905;
 	border-radius: 30px;
 	border: 1px solid rgba(0, 0, 0, 0.2);
 	margin: 20px auto;
@@ -64,7 +64,7 @@ body .from_box{
 
 .from_box .from_password{
     display: block;
-    background-color: #FAF5E9;
+    background-color: #faf5e925;
 	border-radius: 30px;
 	border: 1px solid rgba(0, 0, 0, 0.2);
 	margin: 20px auto;
@@ -92,11 +92,11 @@ body .from_box{
 }
 
 .from_box .from_username input[type="text"]:hover{
-    background-color:rgb(224, 235, 195);
+    background-color:rgb(162, 253, 159);
     width: 80%;
 }
 .from_box .from_password input[type="password"]:hover{
-    background-color:rgb(224, 235, 195);
+    background-color:rgb(162, 253, 159);
     width: 80%;
 }
 

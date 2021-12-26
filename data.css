@@ -7,7 +7,7 @@
 	font-family: 'Vollkorn' sans-serif;
 }
 body{
-    background-color: #FAF5E9;
+    background-color: #474b4f;
 }
 
 .main_page{
@@ -19,7 +19,7 @@ body{
     position: fixed;
     width: 245px;
     height: 100%;
-    background: #545454;
+    background: #000;
     padding: 30px 0;
 }
 
@@ -47,7 +47,7 @@ body{
 }
 
 .main_page .sidebar ul li a{
-    color: #f5efe9c9;
+    color: #fff;
     display: block;
 }
 
@@ -62,11 +62,11 @@ body{
 }
 
 .main_page .sidebar ul li:hover{
-    background-color: #ddc6bb;
+    background-color: #6b6e70
 }
 
 .main_page .sidebar ul li:hover a{
-    color: rgb(87, 51, 30);
+    color: #86c232;
 }
 
 .main_page .main_content{
@@ -76,7 +76,6 @@ body{
 
 .main_page .main_content .header{
     padding: 20px;
-    background: #c7b99c;
     color:aliceblue;
     border-bottom: 1px solid #e0e4e8;
     margin-bottom: 5px;
@@ -86,14 +85,13 @@ body{
 
 }
 .main_page .main_content .header{
-    background: #545454;
+    background: #000;
     width: 100%;
     height: 170px;
 }
 
 .main_page .main_content .header:hover{
-    color: rgb(15, 37, 34);
-    background-color: grey;
+    color: #86c232;;
 }
 
 .main_page .main_content .data{
@@ -120,7 +118,7 @@ body{
 .main_page .main_content .data .moisture_th{
     margin: 32px;
     width: 75%;
-    color: #1a1313;
+    color: #fff;
     line-height: 25px;
     border-bottom: 30px;
     margin-left: 12%;
@@ -132,7 +130,7 @@ body{
 .main_page .main_content .data .moisture_eng{
     margin: 32px;
     width: 75%;
-    color: #1a1313;
+    color: #FFF;
     line-height: 25px;
     border-bottom: 30px;
     margin-left: 12%;
@@ -143,6 +141,7 @@ body{
 
 .main_page .main_content .data h2 h3 h4{
     margin-top: 5%;
+    color:#fff;
 }
 .main_page .main_content .data img{
     display: flex;
@@ -159,7 +158,7 @@ body{
 .main_page .main_content .data .moisture_th_1, .main_page .main_content .data .moisture_eng_1{
     margin: 32px;
     width: 75%;
-    color: #0a0000;
+    color: #fff;
     line-height: 25px;
     border-bottom: 30px;
     margin-left: 12%;
@@ -170,7 +169,7 @@ body{
 .main_page .main_content .data li{
     margin: 10px;
     width: 75%;
-    color: #1a1313;
+    color: #fff;
     line-height: 25px;
     border-bottom: 30px;
     margin-left: 12%;
@@ -217,7 +216,7 @@ body{
 .main_page .main_content .data .moisture_th_2, .main_page .main_content .data .moisture_eng_2{
     margin: 15px;
     width: 75%;
-    color: #0a0000;
+    color: #fff;
     line-height: 25px;
     border-bottom: 30px;
     margin-left: 12%;
@@ -229,7 +228,18 @@ body{
 .main_page .main_content .data2 .ph_th{
     margin: 32px;
     width: 75%;
-    color: #1a1313;
+    color: #fff;
+    line-height: 25px;
+    border-bottom: 30px;
+    margin-left: 12%;
+    font-size: 18px;
+    font-weight: 300;
+    text-align: left;
+}
+.main_page .main_content .data2 .npk_th{
+    margin: 32px;
+    width: 75%;
+    color: #fff;
     line-height: 25px;
     border-bottom: 30px;
     margin-left: 12%;
@@ -240,7 +250,7 @@ body{
 .main_page .main_content .data2 .ph_eng{
     margin: 32px;
     width: 75%;
-    color: #1a1313;
+    color: #fff;
     line-height: 25px;
     border-bottom: 30px;
     margin-left: 12%;
@@ -260,11 +270,34 @@ body{
     justify-content: center;
     border-radius: 10px;
 }
+.main_page .main_content .data3 img{
+    display: flex;
+    margin-top: 5%;
+    border-bottom: 50px;
+    justify-items: center;
+    border-radius: 0%;
+    margin: 30px;
+    margin-left: calc(28%);
+    justify-content: center;
+    border-radius: 10px;
+}
 
 .main_page .main_content .data2 li{
     margin: 10px;
     width: 75%;
-    color: #1a1313;
+    color: #fff;
+    line-height: 25px;
+    border-bottom: 30px;
+    margin-left: 15%;
+    font-size: 18px;
+    font-weight: 500;
+    text-align: left;
+    width: 850px;
+}
+.main_page .main_content .data3 li{
+    margin: 10px;
+    width: 75%;
+    color: #fff;
     line-height: 25px;
     border-bottom: 30px;
     margin-left: 15%;
@@ -278,11 +311,11 @@ body{
     width: 1517px;
 }
 .main_page .main_content{
-    background: rgb(225, 228, 203);
+    background: #474b4f;
 }
 .main_page .main_content .data2 h3{
     margin-top: 15px;
-    color: rgb(48, 24, 12);
+    color: #fff;
 }
 
 .main_page .main_content .data3 img{
@@ -300,7 +333,7 @@ body{
 .main_page .main_content .data3 .npk_th{
     margin: 32px;
     width: 75%;
-    color: #1a1313;
+    color: #fff;
     line-height: 25px;
     border-bottom: 30px;
     margin-left: 12%;
@@ -312,7 +345,7 @@ body{
 .main_page .main_content .data3 .npk_eng{
     margin: 32px;
     width: 75%;
-    color: #1a1313;
+    color: #fff;
     line-height: 25px;
     border-bottom: 30px;
     margin-left: 12%;
@@ -321,3 +354,30 @@ body{
     text-align: left;
 }
 
+.main_page .main_content .data h4,.main_page .main_content .data h2,.main_page .main_content .data h3{
+    color: #FFF;
+}
+
+.main_page .main_content .data2 h5{
+    color: #FFF;
+}
+.main_page .main_content .data2 h4,.main_page .main_content .data2 h2,.main_page .main_content .data2 h3{
+    color: #FFF;
+    text-align: center;
+}
+
+.main_page .main_content .data3 h4,.main_page .main_content .data3 h2,.main_page .main_content .data3 h3{
+    color: #FFF;
+    text-align: center;
+}
+
+.main_page .main_content .data3 h5{
+    color: #FFF;
+}
+
+.main_page .main_content .data3 h5{
+    color: rgb(223, 163, 163);
+    text-align: right;
+    margin-right: 80px;
+    margin-bottom: 20px;
+}
