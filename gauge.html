@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="utf-8">
     <title> Gauge Sensors </title>
@@ -45,7 +44,7 @@
                     firebase.initializeApp(config);
                     firebaseRef = firebase.database().ref("Set");
 
-                    //ดึงค่าจาก Push
+                    //ดึงค่าจาก Push เราจะดึงมาทั้งหมด 50ค่าในฐานข้อมูลเพื่อทำการเปรียบเทียบ
                     firebaseRefpush = firebase.database().ref("Push/Humidity").limitToLast(50);
                     firebaseRef1push = firebase.database().ref("Push/Moisture").limitToLast(50);
                     firebaseRef2push = firebase.database().ref("Push/Nitrogen").limitToLast(50);
@@ -64,54 +63,71 @@
 
                     console.log(datas);
                     
-
+                        // เป็นการส่งค่าไปยังเกจความชื้นในอากาศ โดยที่ค่าจะถูกทำให้เหลือทศนิยม 2 ตำเเหน่ง
+                        // เเละส่งค่าไปที่เกจเเละเเสดง ตามค่าที่ดึงมาได้จากฐานข้อมูลเเบบตลอดเวลา
                         const datash = datas[0];
                         const show = Math.round(datash*100)/100; 
                         document.getElementById('temp').innerHTML =" Humidity " + show + " %";
                         g1.refresh(show);
 
+                        // เป็นการส่งค่าไปยังเกจความชื้นในดิน โดยที่ค่าจะถูกทำให้เหลือทศนิยม 2 ตำเเหน่ง
+                        // เเละส่งค่าไปที่เกจเเละเเสดง ตามค่าที่ดึงมาได้จากฐานข้อมูลเเบบตลอดเวลา
                         const datash1 = datas[1];
                         const show1 = Math.round(datash1*100)/100; 
                         document.getElementById('temp2').innerHTML =" Moisture: " + show1 + " %";
                         g2.refresh(show1);
 
+                        // เป็นการส่งค่าไปยังเกจไนโตรเจน โดยที่ค่าจะถูกทำให้เหลือทศนิยม 2 ตำเเหน่ง
+                        // เเละส่งค่าไปที่เกจเเละเเสดง ตามค่าที่ดึงมาได้จากฐานข้อมูลเเบบตลอดเวลา
                         const datash2 = datas[2];
                         const show2 = Math.round(datash2*100)/100;  
                         document.getElementById('temp3').innerHTML =" Nitrogen: " + show2 + " PPM";
                         g3.refresh(show2);
 
+                        // เป็นการส่งค่าไปยังเกจฟอสฟอรัส โดยที่ค่าจะถูกทำให้เหลือทศนิยม 2 ตำเเหน่ง
+                        // เเละส่งค่าไปที่เกจเเละเเสดง ตามค่าที่ดึงมาได้จากฐานข้อมูลเเบบตลอดเวลา
                         const datash3 = datas[3];
                         const show3 = Math.round(datash3*100)/100; 
                         document.getElementById('temp4').innerHTML =" Phosphorus: " + show3 + " PPM";
                         g4.refresh(show3);
 
+                        // เป็นการส่งค่าไปยังเกจโพเเทสเซียมโดยที่ค่าจะถูกทำให้เหลือทศนิยม 2 ตำเเหน่ง
+                        // เเละส่งค่าไปที่เกจเเละเเสดง ตามค่าที่ดึงมาได้จากฐานข้อมูลเเบบตลอดเวลา
                         const datash4 = datas[4];
                         const show4 = Math.round(datash4*100)/100;
                         document.getElementById('temp5').innerHTML =" Potassium: " + show4 + " PPM";
                         g5.refresh(show4);
 
+                        // เป็นการส่งค่าไปยังเกจอุณหภูมิ เซลเซียส โดยที่ค่าจะถูกทำให้เหลือทศนิยม 2 ตำเเหน่ง
+                        // เเละส่งค่าไปที่เกจเเละเเสดง ตามค่าที่ดึงมาได้จากฐานข้อมูลเเบบตลอดเวลา
                         const datash5 = datas[5];
                         const show5 = Math.round(datash5*100)/100;
                         document.getElementById('temp6').innerHTML =" Temperature  " + show5 + " C*";
                         g6.refresh(show5);
 
+                        // เป็นการส่งค่าไปยังเกจอุณหภูมิ ฟาเรนไฮ โดยที่ค่าจะถูกทำให้เหลือทศนิยม 2 ตำเเหน่ง
+                        // เเละส่งค่าไปที่เกจเเละเเสดง ตามค่าที่ดึงมาได้จากฐานข้อมูลเเบบตลอดเวลา
                         const datash6 = datas[6];
                         const show6 = Math.round(datash6*100)/100;
                         document.getElementById('temp7').innerHTML =" Temperature  " + show6 + " F*";
                         g7.refresh(show6);
 
+                        // เป็นการส่งค่าไปยังเกจพีเฮท โดยที่ค่าจะถูกทำให้เหลือทศนิยม 2 ตำเเหน่ง
+                        // เเละส่งค่าไปที่เกจเเละเเสดง ตามค่าที่ดึงมาได้จากฐานข้อมูลเเบบตลอดเวลา
                         const datash7 = datas[8];
                         const show7 = Math.round(datash7*100)/100;
                         document.getElementById('temp8').innerHTML =" " + show7 + " pH";
                         g8.refresh(show7);
 
-
+                        // เป็นการดึงค่า ไทม์เเสตมของเวลา ในฐานข้อมูล
+                        //โดยจะทำค่าที่ได้มาผ่านฟังชันเเปลงเป็น วัน/วันที่/เดือน/ปี เวลา ชั่งโมง/นาที/วินาที
                         var datetime = datas[7];
                         var date = new Date( datetime * 1000);
                         var year    = date.getFullYear();
                         var month   = date.getMonth();
                         var dateday = date.getDay();
 
+                        //เป็นการเช็คค่าที่ได้จากการเเปลงวัน โดยจะได้มาเป็นตัวเลขเราจะเเปลงเป็นวัน
                         var day     = date.getDate();
                         if(dateday == 0){
                             var setdate = "SUNDAY"
@@ -141,144 +157,185 @@
                         var hour    = date.getHours();
                         var minute  = date.getMinutes();
                         var seconds = date.getSeconds(); 
+                        //เป็นการส่งค่าไปยังส่วนที่เเสดงวันเเละเวลา เเบบตลอดเวลา
                         document.getElementById('date').innerHTML = hour + ":" + minute + ":" + seconds ;
                         document.getElementById('date1').innerHTML = "latest update: "+ setdate +" / "+ day+ "/ " + month  + "/ " + year ;
                      
                     })
-                    // ส่วนของการดึงค่าจาก Push
+                    // สร้าง Function เพื่อเก็บ event ของ Firebase ในส่วนของการเเสดงค่าเเบบเรียลไทม์ของเกจ
+
+                    // สร้าง Function เพื่อเก็บ event ของ Firebase ในส่วนที่ดึงค่าความชื้นในอากาศจาก push   
                     firebaseRefpush.on('value', function(data) {
                         const datas = Object.values(data.val());
 
                         // ใส่ค่าเข้าตัวแปร Global
                         backup_dataspush = datas;
                         console.log(datas);
+                        //สร้างตัวเเปลรับค่าความชื้นในดินจากค่าที่ดึงมาจากฐานข้อมูล มี 50 ค่า
                         const numbers = datas;
+                        // เป็นส่วนของการหาค่าเฉลี่ยของข้อมูลทั้ง 50 ค่า 
                         const sum = numbers.reduce((total, n) => total + n, 0);
                         sumed = Math.round((sum/50)*100)/100;
                         console.log(sumed);
+                        // เป็นการหาค่ามากที่สุดเเละน้อยที่สุด โดยใช้ฟังชันในการหาจากทั้ง 50 ค่า
                         const maxvalue = Math.max(...datas);
                         const minvalue = Math.min(...datas);
+                        //เป็นการส่งค่าที่ได้จากการคำนวณ ส่งไปยังหน้าเว็บเพจ
                         document.getElementById('hm').innerHTML = "Average of Humidity: " + sumed + " %";
                         document.getElementById('hmmax').innerHTML = "Maximum of Humidity: " + maxvalue + " %";
                         document.getElementById('hmmin').innerHTML = "Minimum of Humidity: " + minvalue + " %";
                     })
 
+                    // สร้าง Function เพื่อเก็บ event ของ Firebase ในส่วนที่ดึงค่าความชื้นในดินจาก push
                     firebaseRef1push.on('value', function(data1) {
                         const datas = Object.values(data1.val());
 
                         // ใส่ค่าเข้าตัวแปร Global
                         backup_datas1push = datas;
                         console.log(datas);
+                        //สร้างตัวเเปลรับค่าความชื้นในดินจากค่าที่ดึงมาจากฐานข้อมูล มี 50 ค่า
                         const numbers = datas;
+                        // เป็นส่วนของการหาค่าเฉลี่ยของข้อมูลทั้ง 50 ค่า 
                         const sum = numbers.reduce((total, n) => total + n, 0);
                         sumed1 = Math.round((sum/50)*100)/100;
                         console.log(sumed1);
+                        // เป็นการหาค่ามากที่สุดเเละน้อยที่สุด โดยใช้ฟังชันในการหาจากทั้ง 50 ค่า
                         const maxvalue = Math.max(...datas);
                         const minvalue = Math.min(...datas);
+                        //เป็นการส่งค่าที่ได้จากการคำนวณ ส่งไปยังหน้าเว็บเพจ
                         document.getElementById('mt').innerHTML = "Average of Moisture: " + sumed1 +" %";
                         document.getElementById('mtmax').innerHTML = "Maximum of Moisture: " + maxvalue +" %";
                         document.getElementById('mtmin').innerHTML = "Minimum of Moisture: " + minvalue +" %";
                     })
 
+                    // สร้าง Function เพื่อเก็บ event ของ Firebase ในส่วนที่ดึงค่าไนโตรเจนจาก push
                     firebaseRef2push.on('value', function(data2) {
                         const datas = Object.values(data2.val());
 
                         // ใส่ค่าเข้าตัวแปร Global
                         backup_datas2push = datas;
                         console.log(datas);
-                        const numbers = datas;
+                        //สร้างตัวเเปลรับค่าไนโตรเจนจากค่าที่ดึงมาจากฐานข้อมูล มี 50 ค่า
+                        const numbers = datas; 
+                        // เป็นส่วนของการหาค่าเฉลี่ยของข้อมูลทั้ง 50 ค่า
                         const sum = numbers.reduce((total, n) => total + n, 0);
                         sumed2 = Math.round((sum/50)*100)/100;
-
                         console.log(sumed2);
-                        document.getElementById('ntg').innerHTML = "Average of Nitrogen: " + sumed2 +" PPM(mg/Kg)";
+                        // เป็นการหาค่ามากที่สุดเเละน้อยที่สุด โดยใช้ฟังชันในการหาจากทั้ง 50 ค่า
                         const maxvalue = Math.max(...datas);
                         const minvalue = Math.min(...datas);
+                        //เป็นการส่งค่าที่ได้จากการคำนวณ ส่งไปยังหน้าเว็บเพจ
+                        document.getElementById('ntg').innerHTML = "Average of Nitrogen: " + sumed2 +" PPM(mg/Kg)";
                         document.getElementById('ntgmax').innerHTML = "Maximum of Nitrogen: " + maxvalue +" PPM(mg/Kg)";
                         document.getElementById('ntgmin').innerHTML = "Minimum of Nitrogen: " + minvalue +" PPM(mg/Kg)";
 
                     })
 
+                    // สร้าง Function เพื่อเก็บ event ของ Firebase ในส่วนที่ดึงค่าฟอสฟอรัสจาก push
                     firebaseRef3push.on('value', function(data3) {
                         const datas = Object.values(data3.val());
 
                         // ใส่ค่าเข้าตัวแปร Global
                         backup_datas3push = datas;
                         console.log(datas);
+                        //สร้างตัวเเปลรับค่าคฟอสฟอรัสจากค่าที่ดึงมาจากฐานข้อมูล มี 50 ค่า
                         const numbers = datas;
+                        // เป็นส่วนของการหาค่าเฉลี่ยของข้อมูลทั้ง 50 ค่า
                         const sum = numbers.reduce((total, n) => total + n, 0);
                         sumed3 = Math.round((sum/50)*100)/100;
                         console.log(sumed3);
+                        // เป็นการหาค่ามากที่สุดเเละน้อยที่สุด โดยใช้ฟังชันในการหาจากทั้ง 50 ค่า
                         const maxvalue = Math.max(...datas);
                         const minvalue = Math.min(...datas);
+                        //เป็นการส่งค่าที่ได้จากการคำนวณ ส่งไปยังหน้าเว็บเพจ
                         document.getElementById('ppr').innerHTML = "Average of Phosphorus: " + sumed3 +" PPM(mg/Kg)";
                         document.getElementById('pprmax').innerHTML = "Maximum of Phosphorus: " + maxvalue +" PPM(mg/Kg)";
                         document.getElementById('pprmin').innerHTML = "Minimum of Phosphorus: " + minvalue +" PPM(mg/Kg)";
                     })
 
+                    // สร้าง Function เพื่อเก็บ event ของ Firebase ในส่วนที่ดึงค่าโพเเทสเซียมจาก push
                     firebaseRef4push.on('value', function(data4) {
                         const datas = Object.values(data4.val());
 
                         // ใส่ค่าเข้าตัวแปร Global
                         backup_datas4push = datas;
                         console.log(datas);
+                        //สร้างตัวเเปลรับค่าโพเเทสเซียมจากค่าที่ดึงมาจากฐานข้อมูล มี 50 ค่า
                         const numbers = datas;
+                        // เป็นส่วนของการหาค่าเฉลี่ยของข้อมูลทั้ง 50 ค่า
                         const sum = numbers.reduce((total, n) => total + n, 0);
                         sumed4 = Math.round((sum/50)*100)/100;
                         console.log(sumed4);
+                        // เป็นการหาค่ามากที่สุดเเละน้อยที่สุด โดยใช้ฟังชันในการหาจากทั้ง 50 ค่า
                         const maxvalue = Math.max(...datas);
                         const minvalue = Math.min(...datas);
+                        //เป็นการส่งค่าที่ได้จากการคำนวณ ส่งไปยังหน้าเว็บเพจ
                         document.getElementById('pts').innerHTML = "Average of Potassium: " + sumed4 +" PPM(mg/Kg)";
                         document.getElementById('ptsmax').innerHTML = "Maximum of Potassium: " + maxvalue +" PPM(mg/Kg)";
                         document.getElementById('ptsmin').innerHTML = "Minimum of Potassium: " + minvalue +" PPM(mg/Kg)";
                     })
 
+                    // สร้าง Function เพื่อเก็บ event ของ Firebase ในส่วนที่ดึงค่าอุณหภูมิ เซลเซียส จาก push
                     firebaseRef5push.on('value', function(data5) {
                         const datas = Object.values(data5.val());
 
                         // ใส่ค่าเข้าตัวแปร Global
                         backup_datas5push = datas;
                         console.log(datas);
+                        //สร้างตัวเเปลรับค่าอุณหภูมิ เซลเซียส จากค่าที่ดึงมาจากฐานข้อมูล มี 50 ค่า
                         const numbers = datas;
+                        // เป็นส่วนของการหาค่าเฉลี่ยของข้อมูลทั้ง 50 ค่า
                         const sum = numbers.reduce((total, n) => total + n, 0);
                         sumed5 = Math.round((sum/50)*100)/100;
                         console.log(sumed5);
+                        // เป็นการหาค่ามากที่สุดเเละน้อยที่สุด โดยใช้ฟังชันในการหาจากทั้ง 50 ค่า
                         const maxvalue = Math.max(...datas);
                         const minvalue = Math.min(...datas);
+                        //เป็นการส่งค่าที่ได้จากการคำนวณ ส่งไปยังหน้าเว็บเพจ
                         document.getElementById('tptc').innerHTML = "Average of TemperatureC: " + sumed5 +" Celsius";
                         document.getElementById('tptcmax').innerHTML = "Maximum of TemperatureC: " + maxvalue +" Celsius";
                         document.getElementById('tptcmin').innerHTML = "Minimum of TemperatureC: " + minvalue +" Celsius";
                     })
 
+                    // สร้าง Function เพื่อเก็บ event ของ Firebase ในส่วนที่ดึงค่าอุณหภูมิ ฟาเรนไฮ จาก push
                     firebaseRef6push.on('value', function(data6) {
                         const datas = Object.values(data6.val());
 
                         // ใส่ค่าเข้าตัวแปร Global
                         backup_datas6push = datas;
                         console.log(datas);
+                        //สร้างตัวเเปลรับค่าอุณหภูมิ ฟาเรนไฮ จากค่าที่ดึงมาจากฐานข้อมูล มี 50 ค่า
                         const numbers = datas;
+                        // เป็นส่วนของการหาค่าเฉลี่ยของข้อมูลทั้ง 50 ค่า
                         const sum = numbers.reduce((total, n) => total + n, 0);
                         sumed6 = Math.round((sum/50)*100)/100;
                         console.log(sumed6); 
+                        // เป็นการหาค่ามากที่สุดเเละน้อยที่สุด โดยใช้ฟังชันในการหาจากทั้ง 50 ค่า
                         const maxvalue = Math.max(...datas);
-                        const minvalue = Math.min(...datas);    
+                        const minvalue = Math.min(...datas);   
+                         //เป็นการส่งค่าที่ได้จากการคำนวณ ส่งไปยังหน้าเว็บเพจ
                         document.getElementById('tptf').innerHTML = "Average of TemperatureF: " + sumed6 +" Fahrenheit";
                         document.getElementById('tptfmax').innerHTML = "Maximum of TemperatureF: " + maxvalue +" Fahrenheit";
                         document.getElementById('tptfmin').innerHTML = "Minimum of TemperatureF: " + minvalue +" Fahrenheit";
                     })
 
+                    // สร้าง Function เพื่อเก็บ event ของ Firebase ในส่วนที่ดึงค่าพีเฮท จาก push
                     firebaseRef7push.on('value', function(data7) {
                         const datas = Object.values(data7.val());
 
                         // ใส่ค่าเข้าตัวแปร Global
                         backup_datas7push = datas;
                         console.log(datas);
+                        //สร้างตัวเเปลรับค่าอุณหภูมิ ฟาเรนไฮ จากค่าที่ดึงมาจากฐานข้อมูล มี 50 ค่า
                         const numbers = datas;
+                        // เป็นส่วนของการหาค่าเฉลี่ยของข้อมูลทั้ง 50 ค่า
                         const sum = numbers.reduce((total, n) => total + n, 0);
                         sumed7 = Math.round((sum/50)*100)/100;
                         console.log(sumed7);
+                        // เป็นการหาค่ามากที่สุดเเละน้อยที่สุด โดยใช้ฟังชันในการหาจากทั้ง 50 ค่า
                         const maxvalue = Math.max(...datas);
                         const minvalue = Math.min(...datas); 
+                         //เป็นการส่งค่าที่ได้จากการคำนวณ ส่งไปยังหน้าเว็บเพจ
                         document.getElementById('ph').innerHTML = "Average of pH: " + sumed7 ;
                         document.getElementById('phmax').innerHTML = "Maximum of pH: " + maxvalue ;
                         document.getElementById('phmin').innerHTML = "Minimum of pH: " + minvalue ;
@@ -294,11 +351,15 @@
     </script>
 </head>
 
-<body>
+<body ng-app="firebaseApp">
+<!-- เป็นส่วนของหน้าเพจทั้งหมด -->
 <div class="main_page">
+
+<!-- เป็นส่วนของ slidebar ที่เเสดงในหน้าเว็บเพจ -->
 <div class="sidebar">
-    <img src="logo.png" alt="">
+    <img src="pictures-for-soilsystem\logo.png" alt="html5">
     <h3>Smart Soil Monitoring System</h3>
+    <!-- เป็นส่วนของการที่จะลิงค์ไปหน้าถัดไป -->
     <ul>
         <li><a href="info.html"><i class="fas fa-info-circle"></i>Project Details</a></li>
         <li><a href="gauge.html"><i class="fab fa-cloudscale"></i>Gauge Sensor</a></li>
@@ -309,15 +370,20 @@
         <h4 id="date">10:10:10</h4>
     </ul>
 </div>
+
+<!-- เป็นส่วนของหน้าเพจถัดจากสไลด์บาร์ทั้งหมด -->
 <div class="main_content">
+    <!-- เป็นส่วนของหัวของเพจ -->
     <div class="header">
     <h1>Smart Soil Monitoring System</h1>
     <h2>Gauge Sensor</h2>
     </div>  
-<body ng-app="firebaseApp">
     <div ng-controller="firebaseCtrl">
     </div>
+
+    <!-- เป็นส่วนที่รวบเกจทั้ง 4 ไว้ด้วยกัน จะเเสดงในส่วนบน-->
     <div class="container">
+        <!-- เป็นส่วนของเกจ Humidity ที่จะเเสดงค่าต่างๆที่รับมาจากฐานข้อมูล -->
         <div id="g1" class="gauge">
             <h3 id='temp'>Humidity: </h3>
             <h4 id="hm">Average of Humidity: 0000000</h4>
@@ -347,11 +413,12 @@
                     });
                 </script>
         </div>
+        <!-- เป็นส่วนของเกจ Moisture ที่จะเเสดงค่าต่างๆที่รับมาจากฐานข้อมูล -->
         <div id="g2" class="gauge2">
             <h3 id='temp2'>Moisture: </h3>
-            <h4 id="mt">Average of Humidity: 0000000</h4>
-            <h4 id="mtmax">Maximum of Humidity: 0000000</h4>
-            <h4 id="mtmin">Minimum of Humidity: 0000000</h4>
+            <h4 id="mt">Average of Moisture: 0000000</h4>
+            <h4 id="mtmax">Maximum of Moisture: 0000000</h4>
+            <h4 id="mtmin">Minimum of Moisture: 0000000</h4>
             <script src="raphael-2.1.4.min.js"></script>
                 <script src="justgage.js"></script>
                 <script>
@@ -376,11 +443,12 @@
                     });
                 </script>
         </div>
+        <!-- เป็นส่วนของเกจ Nitrogen ที่จะเเสดงค่าต่างๆที่รับมาจากฐานข้อมูล -->
         <div id="g3" class="gauge3">
             <h3 id='temp3'>Nitrogen: </h3>
-            <h4 id="ntg">Average of Humidity: 0000000</h4>
-            <h4 id="ntgmax">Maximum of Humidity: 0000000</h4>
-            <h4 id="ntgmin">Minimum of Humidity: 0000000</h4>
+            <h4 id="ntg">Average of Nitrogen: 0000000</h4>
+            <h4 id="ntgmax">Maximum of Nitrogen: 0000000</h4>
+            <h4 id="ntgmin">Minimum of Nitrogen: 0000000</h4>
                 <script src="raphael-2.1.4.min.js"></script>
                     <script src="justgage.js"></script>
                     <script>
@@ -405,11 +473,12 @@
                         });
                     </script>
         </div>
+        <!-- เป็นส่วนของเกจ Phosphorus ที่จะเเสดงค่าต่างๆที่รับมาจากฐานข้อมูล -->
         <div id="g4" class="gauge4">
             <h3 id='temp4'>Phosphorus: </h3>
-            <h4 id="ppr">Average of Humidity: 0000000</h4>
-            <h4 id="pprmax">Maximum of Humidity: 0000000</h4>
-            <h4 id="pprmin">Minimum of Humidity: 0000000</h4>
+            <h4 id="ppr">Average of Phosphorus: 0000000</h4>
+            <h4 id="pprmax">Maximum of Phosphorus: 0000000</h4>
+            <h4 id="pprmin">Minimum of Phosphorus: 0000000</h4>
                 <script src="raphael-2.1.4.min.js"></script>
                     <script src="justgage.js"></script>
                     <script>
@@ -435,12 +504,15 @@
                     </script>
         </div>
     </div>
+
+    <!-- เป็นส่วนที่รวบเกจทั้ง 4 ไว้ด้วยกัน จะเเสดงในส่วนล่าง-->
     <div class="container1">
+        <!-- เป็นส่วนของเกจ Potassium ที่จะเเสดงค่าต่างๆที่รับมาจากฐานข้อมูล -->
         <div id="g5" class="gauge5">
             <h3 id='temp5'>Potassium: </h3>
-            <h4 id="pts">Average of Humidity: 0000000</h4>
-            <h4 id="ptsmax">Maximum of Humidity: 0000000</h4>
-            <h4 id="ptsmin">Minimum of Humidity: 0000000</h4>
+            <h4 id="pts">Average of Potassium: 0000000</h4>
+            <h4 id="ptsmax">Maximum of Potassium: 0000000</h4>
+            <h4 id="ptsmin">Minimum of Potassium: 0000000</h4>
                 <script src="raphael-2.1.4.min.js"></script>
                     <script src="justgage.js"></script>
                     <script>
@@ -465,11 +537,12 @@
                         });
                     </script>
         </div>
+        <!-- เป็นส่วนของเกจ Temperature C ที่จะเเสดงค่าต่างๆที่รับมาจากฐานข้อมูล -->
         <div id="g6" class="gauge6">
             <h3 id='temp6'>Temperature: </h3>
-            <h4 id="tptc">Average of Humidity: 0000000</h4>
-            <h4 id="tptcmax">Maximum of Humidity: 0000000</h4>
-            <h4 id="tptcmin">Minimum of Humidity: 0000000</h4>
+            <h4 id="tptc">Average of Temperature: 0000000</h4>
+            <h4 id="tptcmax">Maximum of Temperature: 0000000</h4>
+            <h4 id="tptcmin">Minimum of Temperature: 0000000</h4>
                 <script src="raphael-2.1.4.min.js"></script>
                     <script src="justgage.js"></script>
                     <script>
@@ -494,11 +567,12 @@
                         });
                     </script>
         </div>
+        <!-- เป็นส่วนของเกจ Temperature F ที่จะเเสดงค่าต่างๆที่รับมาจากฐานข้อมูล -->
         <div id="g7" class="gauge7">
             <h3 id='temp7'>Temperature: </h3>
-            <h4 id="tptf">Average of Humidity: 0000000</h4>
-            <h4 id="tptfmax">Maximum of Humidity: 0000000</h4>
-            <h4 id="tptfmin">Minimum of Humidity: 0000000</h4>
+            <h4 id="tptf">Average of Temperature: 0000000</h4>
+            <h4 id="tptfmax">Maximum of Temperature: 0000000</h4>
+            <h4 id="tptfmin">Minimum of Temperature: 0000000</h4>
                 <script src="raphael-2.1.4.min.js"></script>
                     <script src="justgage.js"></script>
                     <script>
@@ -523,11 +597,12 @@
                         });
                     </script>
         </div>
+        <!-- เป็นส่วนของเกจ pH ที่จะเเสดงค่าต่างๆที่รับมาจากฐานข้อมูล -->
         <div id="g8" class="gauge8">
             <h3 id='temp8'> pH: </h3>
-            <h4 id="ph">Average of Humidity: 0000000</h4>
-            <h4 id="phmax">Maximum of Humidity: 0000000</h4>
-            <h4 id="phmin">Minimum of Humidity: 0000000</h4>
+            <h4 id="ph">Average of pH: 0000000</h4>
+            <h4 id="phmax">Maximum of pH: 0000000</h4>
+            <h4 id="phmin">Minimum of pH: 0000000</h4>
                 <script src="raphael-2.1.4.min.js"></script>
                     <script src="justgage.js"></script>
                     <script>
@@ -555,6 +630,5 @@
     </div>
 </div>
 </div>        
-</div>
 </body>
 </html>
