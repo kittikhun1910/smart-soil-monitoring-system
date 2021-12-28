@@ -7,7 +7,7 @@
 	font-family: 'Vollkorn' sans-serif;
 }
 body{
-    background-color: #FAF5E9;
+    background-color: #474b4f;
 }
 
 .main_page{
@@ -19,7 +19,7 @@ body{
     position: fixed;
     width: 245px;
     height: 100%;
-    background: #545454;
+    background: #000;
     padding: 30px 0;
 }
 
@@ -50,12 +50,12 @@ body{
 
 .main_page .sidebar ul li{
     padding: 15px;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-    border-top: 1px solid rgba(225, 225,225, 0.05);
+    border-bottom: 1px solid rgba(241, 234, 234, 0.185);
+    border-top: 1px solid rgba(241, 234, 234, 0.185);
 }
 
 .main_page .sidebar ul li a{
-    color: #f5efe9c9;
+    color: #f5efe9c9;;
     display: block;
 }
 
@@ -70,11 +70,11 @@ body{
 }
 
 .main_page .sidebar ul li:hover{
-    background-color: #ddc6bb;
+    background-color: #6e6b70
 }
 
 .main_page .sidebar ul li:hover a{
-    color: rgb(87, 51, 30);
+    color: #86c232;;
 }
 
 .main_page .main_content{
@@ -96,125 +96,121 @@ body{
 }
 
 .main_page .main_content .header{
-    background: #545454;
+    background: rgb(5, 8, 0);
     width: 100%;
     height: 20%;
 }
 
 .main_page .main_content .header:hover{
-    color: rgb(15, 37, 34);
-    background-color: grey;
+    color:#86c232;
+    background-color: rgb(5, 8, 0);
 }
 
 .main_page .main_content .container .gauge {
-    background-color: #ddc6bb;
+    background-color: #6b6e7065;
     border-radius: 15%;
     margin: 10px;
     padding-bottom: 37px;
+    color: #fff;
 
 }
 .main_page .main_content .container .gauge h4, .main_page .main_content .container .gauge2 h4{
-    color: #000;
+    color: #fff;
     font-size: 14px;
     margin-top: 15px;
-    background: #a5ee96;
+    
 }
 
 .main_page .main_content .container .gauge3 h4, .main_page .main_content .container .gauge4 h4{
-    color: #000;
+    color: #fff;
     font-size: 14px;
     margin-top: 15px;
-    background: #a5ee96;
+    
 }
 
 .main_page .main_content .container .gauge:hover {
-    background-color: #a5ee96;
     border-radius: 15%;
     margin: 10px;
     padding-bottom: 37px;
-    color: rgb(56, 4, 243);
+    color: #86c232;;
     font-size: 16px;
     font-weight: 500;
 }
 
 .main_page .main_content .container .gauge2 {
-    background-color: #ddc6bb;
+    background-color: #6b6e7065;
     border-radius: 15%;
     margin: 10px;
     padding-bottom: 37px;    
 }
 .main_page .main_content .container .gauge2:hover{
-    background-color: #a5ee96;
     border-radius: 15%;
     margin: 10px;
     padding-bottom: 37px;
-    color: rgb(56, 4, 243);
+    color: #86c232;;
     font-size: 16px;
     font-weight: 500;    
 }
 .main_page .main_content .container .gauge3, .main_page .main_content .container .gauge4 {
-    background-color: #ddc6bb;
+    background-color: #6b6e7065;
     border-radius: 15%;
     margin: 10px;
     padding-bottom: 37px;    
 }
 
 .main_page .main_content .container .gauge3:hover, .main_page .main_content .container .gauge4:hover {
-    background-color: #a5ee96;
     border-radius: 15%;
     margin: 10px;
     padding-bottom: 37px;
-    color: rgb(56, 4, 243);
+    color: #86c232;;
     font-size: 16px;
     font-weight: 500;    
 }
 
 .main_page .main_content .container1 .gauge5 , .main_page .main_content .container1 .gauge6{
-    background-color: #ddc6bb;
+    background-color: #6b6e7065;
     border-radius: 15%;
     margin: 10px;
     padding-bottom: 37px;
 }
 
 .main_page .main_content .container1 .gauge5 h4 , .main_page .main_content .container1 .gauge6 h4{
-    color: #000;
+    color: #fff;
     font-size: 14px;
     margin-top: 15px;
-    background: #a5ee96;
 }
 
 .main_page .main_content .container1 .gauge7 h4 , .main_page .main_content .container1 .gauge8 h4{
-    color: #000;
+    color: #fff;
     font-size: 14px;
     margin-top: 15px;
-    background: #a5ee96;
 }
 
 .main_page .main_content .container1 .gauge5:hover , .main_page .main_content .container1 .gauge6:hover{
-    background-color: #e67cd7c7;
     border-radius: 15%;
     margin: 10px;
     padding-bottom: 37px;
-    color: rgb(56, 4, 243);
+    color: #86c232;;
     font-size: 16px;
     font-weight: 500;
 }
 
 .main_page .main_content .container1 .gauge7 , .main_page .main_content .container1 .gauge8{
-    background-color: #ddc6bb;
+    background-color: #6b6e7065;
     border-radius: 15%;
     margin: 10px;
     padding-bottom: 37px;
+    
 }
 .main_page .main_content .container1 .gauge7:hover , .main_page .main_content .container1 .gauge8:hover{
-    background-color: #e67cd7c7;
     border-radius: 15%;
     margin: 10px;
     padding-bottom: 37px;
+    color:#86c232;
 }
 
 .main_page .main_content .container1 .gauge7:hover , .main_page .main_content .container1 .gauge8:hover h3{
-    color: rgb(56, 4, 243);
+    color: #86c232;
     font-size: 16px;
     font-weight: 500;
 }
@@ -264,4 +260,12 @@ a:visited.button,
 a:hover.button {
     margin: 30px 5px 0 2px;
     padding: 7px 13px;
+}
+.main_page {
+    width: 1517px;
+    height: 900px;
+}
+
+.gauge2, .gauge3, .gauge4, .gauge5, .gauge6, .gauge7, .gauge8 h3{
+    color: #fff;
 }
