@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Graph for Data</title>
+    <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
+    <link rel="stylesheet" href="graph.css">
+    <script src="https://www.gstatic.com/firebasejs/3.4.0/firebase.js"></script>
+    
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/3.4.0/firebase.js"></script>
+
+    <!-- ส่วนนี้เป็นการดึงค่าต่างๆที่ต้องใช้เพื่อเปรียบเที่ยบค่าที่ได้มากับข้อมูลที่มี ส่วนนี้ภานในอนาคตเราจะอาจจะทำเพิ่มเติม -->
+    <script>
+        // Initialize Firebase
+        var firebaseRefpush = {};
+        var firebaseRef1push = {};
+        var firebaseRef2push = {};
+        var firebaseRef3push = {};
+        var firebaseRef4push = {};
+        var firebaseRef5push = {};
+        var firebaseRef6push = {};
+        var firebaseRef7push = {};
+        var firebaseRef8push = {};
+
+        // เพื่อสร้างตัวแปร Global ไว้ส่งค่าไปใช้ในส่วนอื่น ๆ
+        var backup_datas = {};
+        var backup_datas1 = {};
+        var backup_datas2 = {};
+        var backup_datas3 = {};
+        var backup_datas4 = {};
+        var backup_datas5 = {};
+        var backup_datas6 = {};
+        var backup_datas7 = {};
+        var backup_datas8 = {};
+
+        angular.module('firebaseApp', []).service('firebaseService', function() {
+            // สร้าง Function เพื่อ init Firebase เข้ากับ app เรา
+            this.initFirebase = function() {
+                var config = {
+                    apiKey: "AIzaSyBjrPJOwH2YJ-aAIvDdJf1PcY6_eT1Hqtc",
+                  authDomain: "soil-monitoring-system-961a3.firebaseapp.com",
+                  databaseURL: "https://soil-monitoring-system-961a3-default-rtdb.firebaseio.com"
+                };
+                firebase.initializeApp(config);
+                firebaseRefpush = firebase.database().ref("Push/Humidity").limitToLast(10);
+                firebaseRef1push = firebase.database().ref("Push/Moisture").limitToLast(10);
+                firebaseRef2push = firebase.database().ref("Push/Nitrogen").limitToLast(10);
+                firebaseRef3push = firebase.database().ref("Push/Phosphorus").limitToLast(10);
+                firebaseRef4push = firebase.database().ref("Push/Potassium").limitToLast(10);
+                firebaseRef5push = firebase.database().ref("Push/TemperatureC").limitToLast(10);
+                firebaseRef6push = firebase.database().ref("Push/TemperatureF").limitToLast(10);
+                firebaseRef7push = firebase.database().ref("Push/pH").limitToLast(10);
+                firebaseRef8push = firebase.database().ref("Set");    
+            }
+            // สร้าง Function เพื่อเก็บ event ของ Firebase
+            this.eventFirebase = function() {
+                firebaseRefpush.on('value', function(data) {
+                  const datas = Object.values(data.val());
+
+                  // ใส่ค่าเข้าตัวแปร Global
+                  backup_datas = datas;
+                console.log(datas);
+                const numbers = datas;
+                const sum = numbers.reduce((total, n) => total + n, 0);
+                sumed = sum/10;
+                console.log(sumed);
+                document.getElementById('ni').innerHTML = "Average of Humidity: " + sumed + " %";
+                })
+
+                firebaseRef1push.on('value', function(data1) {
+                  const datas = Object.values(data1.val());
+
+                  // ใส่ค่าเข้าตัวแปร Global
+                backup_datas1 = datas;
+                console.log(datas);
+                const numbers = datas;
+                const sum = numbers.reduce((total, n) => total + n, 0);
+                sumed1 = sum/10;
+                console.log(sumed1);
+                document.getElementById('ni1').innerHTML = "Average of Moisture: " + sumed1 +" %";
+                })
+
+                firebaseRef2push.on('value', function(data2) {
+                  const datas = Object.values(data2.val());
+
+                  // ใส่ค่าเข้าตัวแปร Global
+                backup_datas2 = datas;
+                console.log(datas);
+                const numbers = datas;
+                const sum = numbers.reduce((total, n) => total + n, 0);
+                sumed2 = sum/10;
+                console.log(sumed2);
+                document.getElementById('ni2').innerHTML = "Average of Nitrogen: " + sumed2 +" PPM(mg/Kg)";
+                })
+
+                firebaseRef3push.on('value', function(data3) {
+                  const datas = Object.values(data3.val());
+
+                  // ใส่ค่าเข้าตัวแปร Global
+                backup_datas3 = datas;
+                console.log(datas);
+                const numbers = datas;
+                const sum = numbers.reduce((total, n) => total + n, 0);
+                sumed3 = sum/10;
+                console.log(sumed3);
+                document.getElementById('ni3').innerHTML = "Average of Phosphorus: " + sumed3 +" PPM(mg/Kg)";
+                })
+
+                firebaseRef4push.on('value', function(data4) {
+                  const datas = Object.values(data4.val());
+
+                  // ใส่ค่าเข้าตัวแปร Global
+                backup_datas4 = datas;
+                console.log(datas);
+                const numbers = datas;
+                const sum = numbers.reduce((total, n) => total + n, 0);
+                sumed4 = sum/10;
+                console.log(sumed4);
+                document.getElementById('ni4').innerHTML = "Average of Potassium: " + sumed4 +" PPM(mg/Kg)";
+                })
+
+                firebaseRef5push.on('value', function(data5) {
+                  const datas = Object.values(data5.val());
+
+                  // ใส่ค่าเข้าตัวแปร Global
+                backup_datas5 = datas;
+                console.log(datas);
+                const numbers = datas;
+                const sum = numbers.reduce((total, n) => total + n, 0);
+                sumed5 = sum/10;
+                console.log(sumed5);
+                document.getElementById('ni5').innerHTML = "Average of TemperatureC: " + sumed5 +" C*";
+                })
+
+                firebaseRef6push.on('value', function(data6) {
+                  const datas = Object.values(data6.val());
+
+                  // ใส่ค่าเข้าตัวแปร Global
+                backup_datas6 = datas;
+                console.log(datas);
+                const numbers = datas;
+                const sum = numbers.reduce((total, n) => total + n, 0);
+                sumed6 = sum/10;
+                console.log(sumed6);
+                document.getElementById('ni6').innerHTML = "Average of TemperatureF: " + sumed6 +" F*";
+                })
+
+                firebaseRef7push.on('value', function(data7) {
+                  const datas = Object.values(data7.val());
+
+                  // ใส่ค่าเข้าตัวแปร Global
+                backup_datas7 = datas;
+                console.log(datas);
+                const numbers = datas;
+                const sum = numbers.reduce((total, n) => total + n, 0);
+                sumed7 = sum/10;
+                console.log(sumed7);
+                document.getElementById('ni7').innerHTML = "Average of pH: " + sumed7 ;
+                })
+                
+                firebaseRef8push.on('value', function(data) {
+                  const datas = Object.values(data.val());
+                    var datetime = datas[7];
+                          var date = new Date( datetime * 1000);
+                          console.log(date)
+                          var year    = date.getFullYear();
+                          var month   = date.getMonth();
+
+                          if(month== 0){
+                              var setmonth = "JANYARY"
+                          }
+                          else if(month == 1){
+                              var setmonth = "FEBRUARY"
+                          }
+                          else if(month== 2){
+                              var setmonth = "MARCH"
+                          }
+                          else if(month == 3){
+                              var setmonth = "APRIL"
+                          }
+                          else if(month == 4){
+                              var setmonth = "MAY"
+                          }
+                          else if(month == 5){
+                              var setmonth = "JUNE"
+                          }
+                          else if(month == 6){
+                              var setmonth = "JULY"
+                          }
+                          else if(month == 7){
+                              var setmonth = "AUGUST"
+                          }
+                          else if(month == 8){
+                              var setmonth = "SEPTEMBER"
+                          }
+                          else if(month == 9){
+                              var setmonth = "OCTOBER"
+                          }
+                          else if(month == 10){
+                              var setmonth = "NOVEMBER"
+                          }
+                          else if(month == 11){
+                              var setmonth = "DECEMBER"
+                          }
+                          else{
+                              var setdate = "No Month"
+                          }
+                          var dateday = date.getDay();
+                          var day     = date.getDate();
+                          
+                          // เป็นส่วนของการนำค่าที่ได้มาเที่ยบกับวันเเละเเสดงค่าเป็นวัน
+                          if(dateday == 0){
+                              var setdate = "SUNDAY"
+                          }
+                          else if(dateday == 1){
+                              var setdate = "MONDAY"
+                          }
+                          else if(dateday == 2){
+                              var setdate = "TUESDAY"
+                          }
+                          else if(dateday == 3){
+                              var setdate = "WEDNESDAY"
+                          }
+                          else if(dateday == 4){
+                              var setdate = "THURSDAY"
+                          }
+                          else if(dateday == 5){
+                              var setdate = "FRIDAY"
+                          }
+                          else if(dateday == 6){
+                              var setdate = "SATURDAY"
+                          }
+                          else{
+                              var setdate = "No data"
+                          }
+
+                          var hour    = date.getHours();
+                          var minute  = date.getMinutes();
+                          var seconds = date.getSeconds(); 
+                          document.getElementById('date').innerHTML = hour + ":" + minute + ":" + seconds ;
+                          document.getElementById('date1').innerHTML = "latest update: "+ setdate +" / "+ day+ "/ " + setmonth  + "/ " + year ;
+                  })
+            }            
+            this.push = function(title, content) {}
+        }).controller('firebaseCtrl', function(firebaseService) {
+            // เรียกใช้งาน firebaseService ที่เราสร้างไว้
+            firebaseService.initFirebase();
+            firebaseService.eventFirebase();
+        })
+    </script>
+</head>
+
+<body ng-app="firebaseApp" >
+    <!-- เป็นส่วนของหน้าเพจทั้งหมด -->
+    <div class="main_page" ng-controller="firebaseCtrl">
+        <!-- เป็นส่วนของ slidebar ที่เเสดงในหน้าเว็บเพจ -->
+        <div class="sidebar">
+            <img src="pictures-for-soilsystem\logo.png" alt="">
+            <h3>Smart Soil Monitoring System</h3>
+    
+            <!-- เป็นส่วนของการที่จะลิงค์ไปหน้าถัดไป -->
+            <ul>
+                <li><a href="info.html"><i class="fas fa-info-circle"></i>Project Details</a></li>
+                <li><a href="gauge.html"><i class="fab fa-cloudscale"></i>Gauge Sensor</a></li>
+                <li><a href="data.html"><i class="fas fa-database"></i>Information data</a></li>
+                <li><a href="graph.html"><i class="fas fa-chart-bar"></i>Graph data</a></li>
+                <li><a href="index.html"><i class="fas fa-sign-out-alt"></i>Logout</a></li>
+    
+                <!-- ส่วนนี้เป็นส่วนที่เเสดงเวลาเเบบเรียลไทม์ -->
+                <h4 id="date1">latest update: Monday 15 May 2021</h4>
+                <h4 id="date">10:10:10</h4>
+            </ul>
+        </div>
+        <!-- เป็นส่วนของหน้าเพจถัดจากสไลด์บาร์ทั้งหมด -->
+        <div class="main_content">
+    
+            <!-- เป็นส่วนของหัวของเพจ -->
+            <div class="header">
+            <h1>Smart Soil Monitoring System</h1>
+            <h2>Graph Data</h2>
+        </div>
+</div>
+</body>
+</html>

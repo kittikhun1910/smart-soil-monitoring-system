@@ -210,7 +210,7 @@ void loop()
     Serial.println(epochTime);
 
         // random ph begin 0 - 14 
-   int int_ph = random(3,12);
+   int int_ph = random(5,8);
    float flo_ph = random(35, 100);
    float cov_ph = flo_ph /100;
    float ph = int_ph + cov_ph;
@@ -219,7 +219,7 @@ void loop()
    // random Nitrogen  (0 - 200 +-) มก./กก. = มิลลิกรัมต่อกิโลกรัม = มก./1000 กรัม (เท่ากับ 1 ppm) 
    //mg/kg = milligram per kilogram = mg/1000 grams (same as 1 ppm)
 
-   int int_N = random(10,200);
+   int int_N = random(20,200);
    float flo_N = random(0, 100);
    float cov_N = flo_N /100;
    float nitrogen = int_N + cov_N;
@@ -227,7 +227,7 @@ void loop()
    // random Phosphorus   (0 - 14 +-) มก./กก. = มิลลิกรัมต่อกิโลกรัม = มก./1000 กรัม (เท่ากับ 1 ppm) 
    //mg/kg = milligram per kilogram = mg/1000 grams (same as 1 ppm)
 
-   int int_P = random(2,14);
+   int int_P = random(3,14);
    float flo_P = random(0, 100);
    float cov_P = flo_P /100;
    float phosphorus  = int_P + cov_P;
@@ -235,7 +235,7 @@ void loop()
    // random Potassium   (0 - 200 +-) มก./กก. = มิลลิกรัมต่อกิโลกรัม = มก./1000 กรัม (เท่ากับ 1 ppm) 
    //mg/kg = milligram per kilogram = mg/1000 grams (same as 1 ppm)
 
-   int int_K = random(15,200);
+   int int_K = random(20,200);
    float flo_K = random(0, 100);
    float cov_K = flo_K /100;
    float potassium  = int_K + cov_K;

@@ -165,8 +165,48 @@
                           var date = new Date( datetime * 1000);
                           var year    = date.getFullYear();
                           var month   = date.getMonth();
-                          var dateday = date.getDay();
 
+                          if(month== 0){
+                              var setmonth = "JANYARY"
+                          }
+                          else if(month == 1){
+                              var setmonth = "FEBRUARY"
+                          }
+                          else if(month== 2){
+                              var setmonth = "MARCH"
+                          }
+                          else if(month == 3){
+                              var setmonth = "APRIL"
+                          }
+                          else if(month == 4){
+                              var setmonth = "MAY"
+                          }
+                          else if(month == 5){
+                              var setmonth = "JUNE"
+                          }
+                          else if(month == 6){
+                              var setmonth = "JULY"
+                          }
+                          else if(month == 7){
+                              var setmonth = "AUGUST"
+                          }
+                          else if(month == 8){
+                              var setmonth = "SEPTEMBER"
+                          }
+                          else if(month == 9){
+                              var setmonth = "OCTOBER"
+                          }
+                          else if(month == 10){
+                              var setmonth = "NOVEMBER"
+                          }
+                          else if(month == 11){
+                              var setmonth = "DECEMBER"
+                          }
+                          else{
+                              var setdate = "No Month"
+                          }
+
+                          var dateday = date.getDay();
                           var day     = date.getDate();
                           if(dateday == 0){
                               var setdate = "SUNDAY"
@@ -197,7 +237,7 @@
                           var minute  = date.getMinutes();
                           var seconds = date.getSeconds(); 
                           document.getElementById('date').innerHTML = hour + ":" + minute + ":" + seconds ;
-                          document.getElementById('date1').innerHTML = "latest update: "+ setdate +" / "+ day+ "/ " + month  + "/ " + year ;
+                          document.getElementById('date1').innerHTML = "latest update: "+ setdate +" / "+ day+ "/ " + setmonth  + "/ " + year ;
                   })
             }            
             this.push = function(title, content) {}
@@ -221,7 +261,7 @@
             <li><a href="info.html"><i class="fas fa-info-circle"></i>Project Details</a></li>
             <li><a href="gauge.html"><i class="fab fa-cloudscale"></i>Gauge Sensor</a></li>
             <li><a href="data.html"><i class="fas fa-database"></i>Information data</a></li>
-            <li><a href="#"><i class="fas fa-chart-bar"></i>Graph data</a></li>
+            <li><a href="graph.html"><i class="fas fa-chart-bar"></i>Graph data</a></li>
             <li><a href="index.html"><i class="fas fa-sign-out-alt"></i>Logout</a></li>
 
             <!-- ส่วนนี้เป็นส่วนที่เเสดงเวลาเเบบเรียลไทม์ -->
