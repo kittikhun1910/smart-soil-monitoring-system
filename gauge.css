@@ -70,11 +70,14 @@ body{
 }
 
 .main_page .sidebar ul li:hover{
-    background-color: #6e6b70
+    color: #000;
+    background:#c0df96ec;
+    box-shadow: 0 0 5px #c0df96ec, 0 0 25px #c0df96ec, 0 0 50px #c0df96ec,
+    0 0 200px #c0df96ec;
 }
 
 .main_page .sidebar ul li:hover a{
-    color: #86c232;;
+    color: #000;;
 }
 
 .main_page .main_content{
@@ -103,7 +106,9 @@ body{
 
 .main_page .main_content .header:hover{
     color:#86c232;
-    background-color: rgb(5, 8, 0);
+    background:rgb(5, 8, 0) ;
+    box-shadow: 0 0 5px #c0df96ec, 0 0 25px #c0df96ec, 0 0 50px #c0df96ec,
+    0 0 200px #c0df96ec;;
 }
 
 .main_page .main_content .container .gauge {
@@ -135,6 +140,9 @@ body{
     color: #86c232;;
     font-size: 16px;
     font-weight: 500;
+    background:#6b6e7065;
+    box-shadow: 0 0 5px #797b7c6c, 0 0 25px #797b7c6c, 0 0 50px #797b7c6c,
+    0 0 200px #797b7c6c;
 }
 
 .main_page .main_content .container .gauge2 {
@@ -149,8 +157,11 @@ body{
     padding-bottom: 37px;
     color: #86c232;;
     font-size: 16px;
-    font-weight: 500;    
-}
+    font-weight: 500;
+    background:#6b6e7065;
+    box-shadow: 0 0 5px #797b7c6c, 0 0 25px #797b7c6c, 0 0 50px #797b7c6c,
+    0 0 200px #797b7c6c;
+}    
 .main_page .main_content .container .gauge3, .main_page .main_content .container .gauge4 {
     background-color: #6b6e7065;
     border-radius: 15%;
@@ -164,7 +175,10 @@ body{
     padding-bottom: 37px;
     color: #86c232;;
     font-size: 16px;
-    font-weight: 500;    
+    font-weight: 500;  
+    background:#6b6e7065;
+    box-shadow: 0 0 5px #797b7c6c, 0 0 25px #797b7c6c, 0 0 50px #797b7c6c,
+    0 0 200px #797b7c6c;  
 }
 
 .main_page .main_content .container1 .gauge5 , .main_page .main_content .container1 .gauge6{
@@ -193,6 +207,9 @@ body{
     color: #86c232;;
     font-size: 16px;
     font-weight: 500;
+    background:#6b6e7065;
+    box-shadow: 0 0 5px #797b7c6c, 0 0 25px #797b7c6c, 0 0 50px #797b7c6c,
+    0 0 200px #797b7c6c;
 }
 
 .main_page .main_content .container1 .gauge7 , .main_page .main_content .container1 .gauge8{
@@ -207,6 +224,9 @@ body{
     margin: 10px;
     padding-bottom: 37px;
     color:#86c232;
+    background:#6b6e7065;
+    box-shadow: 0 0 5px #797b7c6c, 0 0 25px #797b7c6c, 0 0 50px #797b7c6c,
+    0 0 200px #797b7c6c;
 }
 
 .main_page .main_content .container1 .gauge7:hover , .main_page .main_content .container1 .gauge8:hover h3{

@@ -1,10 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
-    <title> Gauge Sensors </title>
-    <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
-    <link rel="stylesheet" href="gauge.css">
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <style>
+        #chart_div {
+            width: 500px;
+            height: 500px;
+        }
+        
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular.js"></script>
     <script src="https://www.gstatic.com/firebasejs/3.4.0/firebase.js"></script>
     <script type="text/javascript">
@@ -65,56 +75,56 @@
                     
                         // เป็นการส่งค่าไปยังเกจความชื้นในอากาศ โดยที่ค่าจะถูกทำให้เหลือทศนิยม 2 ตำเเหน่ง
                         // เเละส่งค่าไปที่เกจเเละเเสดง ตามค่าที่ดึงมาได้จากฐานข้อมูลเเบบตลอดเวลา
-                        const datash = datas[0];
+                        var datash = datas[0];
                         const show = Math.round(datash*100)/100; 
                         document.getElementById('temp').innerHTML =" Humidity " + show + " %";
                         g1.refresh(show);
 
                         // เป็นการส่งค่าไปยังเกจความชื้นในดิน โดยที่ค่าจะถูกทำให้เหลือทศนิยม 2 ตำเเหน่ง
                         // เเละส่งค่าไปที่เกจเเละเเสดง ตามค่าที่ดึงมาได้จากฐานข้อมูลเเบบตลอดเวลา
-                        const datash1 = datas[1];
+                        var datash1 = datas[1];
                         const show1 = Math.round(datash1*100)/100; 
                         document.getElementById('temp2').innerHTML =" Moisture: " + show1 + " %";
                         g2.refresh(show1);
 
                         // เป็นการส่งค่าไปยังเกจไนโตรเจน โดยที่ค่าจะถูกทำให้เหลือทศนิยม 2 ตำเเหน่ง
                         // เเละส่งค่าไปที่เกจเเละเเสดง ตามค่าที่ดึงมาได้จากฐานข้อมูลเเบบตลอดเวลา
-                        const datash2 = datas[2];
+                        var datash2 = datas[2];
                         const show2 = Math.round(datash2*100)/100;  
                         document.getElementById('temp3').innerHTML =" Nitrogen: " + show2 + " PPM";
                         g3.refresh(show2);
 
                         // เป็นการส่งค่าไปยังเกจฟอสฟอรัส โดยที่ค่าจะถูกทำให้เหลือทศนิยม 2 ตำเเหน่ง
                         // เเละส่งค่าไปที่เกจเเละเเสดง ตามค่าที่ดึงมาได้จากฐานข้อมูลเเบบตลอดเวลา
-                        const datash3 = datas[3];
+                        var datash3 = datas[3];
                         const show3 = Math.round(datash3*100)/100; 
                         document.getElementById('temp4').innerHTML =" Phosphorus: " + show3 + " PPM";
                         g4.refresh(show3);
 
                         // เป็นการส่งค่าไปยังเกจโพเเทสเซียมโดยที่ค่าจะถูกทำให้เหลือทศนิยม 2 ตำเเหน่ง
                         // เเละส่งค่าไปที่เกจเเละเเสดง ตามค่าที่ดึงมาได้จากฐานข้อมูลเเบบตลอดเวลา
-                        const datash4 = datas[4];
+                        var datash4 = datas[4];
                         const show4 = Math.round(datash4*100)/100;
                         document.getElementById('temp5').innerHTML =" Potassium: " + show4 + " PPM";
                         g5.refresh(show4);
 
                         // เป็นการส่งค่าไปยังเกจอุณหภูมิ เซลเซียส โดยที่ค่าจะถูกทำให้เหลือทศนิยม 2 ตำเเหน่ง
                         // เเละส่งค่าไปที่เกจเเละเเสดง ตามค่าที่ดึงมาได้จากฐานข้อมูลเเบบตลอดเวลา
-                        const datash5 = datas[5];
+                        var datash5 = datas[5];
                         const show5 = Math.round(datash5*100)/100;
                         document.getElementById('temp6').innerHTML =" Temperature  " + show5 + " C*";
                         g6.refresh(show5);
 
                         // เป็นการส่งค่าไปยังเกจอุณหภูมิ ฟาเรนไฮ โดยที่ค่าจะถูกทำให้เหลือทศนิยม 2 ตำเเหน่ง
                         // เเละส่งค่าไปที่เกจเเละเเสดง ตามค่าที่ดึงมาได้จากฐานข้อมูลเเบบตลอดเวลา
-                        const datash6 = datas[6];
+                        var datash6 = datas[6];
                         const show6 = Math.round(datash6*100)/100;
                         document.getElementById('temp7').innerHTML =" Temperature  " + show6 + " F*";
                         g7.refresh(show6);
 
                         // เป็นการส่งค่าไปยังเกจพีเฮท โดยที่ค่าจะถูกทำให้เหลือทศนิยม 2 ตำเเหน่ง
                         // เเละส่งค่าไปที่เกจเเละเเสดง ตามค่าที่ดึงมาได้จากฐานข้อมูลเเบบตลอดเวลา
-                        const datash7 = datas[8];
+                        var datash7 = datas[8];
                         const show7 = Math.round(datash7*100)/100;
                         document.getElementById('temp8').innerHTML =" " + show7 + " pH";
                         g8.refresh(show7);
@@ -125,46 +135,6 @@
                         var date = new Date( datetime * 1000);
                         var year    = date.getFullYear();
                         var month   = date.getMonth();
-
-                        if(month== 0){
-                              var setmonth = "JANYARY"
-                          }
-                          else if(month == 1){
-                              var setmonth = "FEBRUARY"
-                          }
-                          else if(month== 2){
-                              var setmonth = "MARCH"
-                          }
-                          else if(month == 3){
-                              var setmonth = "APRIL"
-                          }
-                          else if(month == 4){
-                              var setmonth = "MAY"
-                          }
-                          else if(month == 5){
-                              var setmonth = "JUNE"
-                          }
-                          else if(month == 6){
-                              var setmonth = "JULY"
-                          }
-                          else if(month == 7){
-                              var setmonth = "AUGUST"
-                          }
-                          else if(month == 8){
-                              var setmonth = "SEPTEMBER"
-                          }
-                          else if(month == 9){
-                              var setmonth = "OCTOBER"
-                          }
-                          else if(month == 10){
-                              var setmonth = "NOVEMBER"
-                          }
-                          else if(month == 11){
-                              var setmonth = "DECEMBER"
-                          }
-                          else{
-                              var setdate = "No Month"
-                          }
                         var dateday = date.getDay();
 
                         //เป็นการเช็คค่าที่ได้จากการเเปลงวัน โดยจะได้มาเป็นตัวเลขเราจะเเปลงเป็นวัน
@@ -199,7 +169,7 @@
                         var seconds = date.getSeconds(); 
                         //เป็นการส่งค่าไปยังส่วนที่เเสดงวันเเละเวลา เเบบตลอดเวลา
                         document.getElementById('date').innerHTML = hour + ":" + minute + ":" + seconds ;
-                        document.getElementById('date1').innerHTML = "latest update: "+ setdate +" / "+ day+ "/ " + setmonth  + "/ " + year ;
+                        document.getElementById('date1').innerHTML = "latest update: "+ setdate +" / "+ day+ "/ " + month  + "/ " + year ;
                      
                     })
                     // สร้าง Function เพื่อเก็บ event ของ Firebase ในส่วนของการเเสดงค่าเเบบเรียลไทม์ของเกจ
@@ -390,287 +360,48 @@
                 })
     </script>
 </head>
-
-<body ng-app="firebaseApp">
-<!-- เป็นส่วนของหน้าเพจทั้งหมด -->
-<div class="main_page">
-
-<!-- เป็นส่วนของ slidebar ที่เเสดงในหน้าเว็บเพจ -->
-<div class="sidebar">
-    <img src="pictures-for-soilsystem\logo.png" alt="html5">
-    <h3>Smart Soil Monitoring System</h3>
-    <!-- เป็นส่วนของการที่จะลิงค์ไปหน้าถัดไป -->
-    <ul>
-        <li><a href="info.html"><i class="fas fa-info-circle"></i>Project Details</a></li>
-        <li><a href="gauge.html"><i class="fab fa-cloudscale"></i>Gauge Sensor</a></li>
-        <li><a href="data.html"><i class="fas fa-database"></i>Information data</a></li>
-        <li><a href="graph.html"><i class="fas fa-chart-bar"></i>Graph data</a></li>
-        <li><a href="index.html"><i class="fas fa-sign-out-alt"></i>Logout</a></li>
-
-        <!-- ส่วนนี้เป็นส่วนที่เเสดงเวลาเเบบเรียลไทม์ -->
-        <h4 id="date1">latest update: Monday 15 May 2021</h4>
-        <h4 id="date">10:10:10</h4>
-    </ul>
+<body ng-app="firebaseApp" >
+    <div class="main_page" ng-controller="firebaseCtrl">
+    <h1 id="temp">fgdfgfg</h1>
+<canvas id="myChart" width="400" height="400"></canvas>
+<script>
+const ctx = document.getElementById('myChart').getContext('2d');
+const myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+        datasets: [{
+            label: '# of Votes',
+            data: [12, 19, 3, 5, 2, 3],
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    }
+});
+</script>
+ 
 </div>
-
-<!-- เป็นส่วนของหน้าเพจถัดจากสไลด์บาร์ทั้งหมด -->
-<div class="main_content">
-    <!-- เป็นส่วนของหัวของเพจ -->
-    <div class="header">
-    <h1>Smart Soil Monitoring System</h1>
-    <h2>Gauge Sensor</h2>
-    </div>  
-    <div ng-controller="firebaseCtrl">
-    </div>
-
-    <!-- เป็นส่วนที่รวบเกจทั้ง 4 ไว้ด้วยกัน จะเเสดงในส่วนบน-->
-    <div class="container">
-        <!-- เป็นส่วนของเกจ Humidity ที่จะเเสดงค่าต่างๆที่รับมาจากฐานข้อมูล -->
-        <div id="g1" class="gauge">
-            <h3 id='temp'>Humidity: </h3>
-            <h4 id="hm">Average of Humidity: 0000000</h4>
-            <h4 id="hmmax">Maximum of Humidity: 0000000</h4>
-            <h4 id="hmmin">Minimum of Humidity: 0000000</h4>
-            <script src="raphael-2.1.4.min.js"></script>
-                <script src="justgage.js"></script>
-                <script>
-                var g1;
-                document.addEventListener("DOMContentLoaded", function(event) {
-                    g1 = new JustGage({
-                        id: "g1",
-                        title: "Humidity",
-                        value: 1,
-                        min: 0,
-                        max: 100,
-                        gaugeWidthScale: 0.7,
-                        counter: true,
-                        titleFontColor: "#000",
-                        titleFontFamily: "Georgia",
-                        titlePosition: "below",
-                        valueFontColor: "#fff",
-                        valueFontFamily: "Georgia",
-                        titleFontFamily: "Vollkorn",
-                    });
-            
-                    });
-                </script>
-        </div>
-        <!-- เป็นส่วนของเกจ Moisture ที่จะเเสดงค่าต่างๆที่รับมาจากฐานข้อมูล -->
-        <div id="g2" class="gauge2">
-            <h3 id='temp2'>Moisture: </h3>
-            <h4 id="mt">Average of Moisture: 0000000</h4>
-            <h4 id="mtmax">Maximum of Moisture: 0000000</h4>
-            <h4 id="mtmin">Minimum of Moisture: 0000000</h4>
-            <script src="raphael-2.1.4.min.js"></script>
-                <script src="justgage.js"></script>
-                <script>
-                var g2;
-                document.addEventListener("DOMContentLoaded", function(event) {
-                    g2 = new JustGage({
-                        id: "g2",
-                        title: "Moisture",
-                        value: 1,
-                        min: 0,
-                        max: 100,
-                        gaugeWidthScale: 0.7,
-                        counter: true,
-                        titleFontColor: "#000",
-                        titleFontFamily: "Georgia",
-                        titlePosition: "below",
-                        valueFontColor: "#fff",
-                        valueFontFamily: "Georgia",
-                        titleFontFamily: "Vollkorn",
-                    });
-            
-                    });
-                </script>
-        </div>
-        <!-- เป็นส่วนของเกจ Nitrogen ที่จะเเสดงค่าต่างๆที่รับมาจากฐานข้อมูล -->
-        <div id="g3" class="gauge3">
-            <h3 id='temp3'>Nitrogen: </h3>
-            <h4 id="ntg">Average of Nitrogen: 0000000</h4>
-            <h4 id="ntgmax">Maximum of Nitrogen: 0000000</h4>
-            <h4 id="ntgmin">Minimum of Nitrogen: 0000000</h4>
-                <script src="raphael-2.1.4.min.js"></script>
-                    <script src="justgage.js"></script>
-                    <script>
-                    var g3;
-                    document.addEventListener("DOMContentLoaded", function(event) {
-                        g3 = new JustGage({
-                            id: "g3",
-                            title: "Nitrogen",
-                            value: 1,
-                            min: 0,
-                            max: 200,
-                            gaugeWidthScale: 0.7,
-                            counter: true,
-                            titleFontColor: "#000",
-                            titleFontFamily: "Georgia",
-                            titlePosition: "below",
-                            valueFontColor: "#fff",
-                            valueFontFamily: "Georgia",
-                            titleFontFamily: "Vollkorn",
-                        });
-                    
-                        });
-                    </script>
-        </div>
-        <!-- เป็นส่วนของเกจ Phosphorus ที่จะเเสดงค่าต่างๆที่รับมาจากฐานข้อมูล -->
-        <div id="g4" class="gauge4">
-            <h3 id='temp4'>Phosphorus: </h3>
-            <h4 id="ppr">Average of Phosphorus: 0000000</h4>
-            <h4 id="pprmax">Maximum of Phosphorus: 0000000</h4>
-            <h4 id="pprmin">Minimum of Phosphorus: 0000000</h4>
-                <script src="raphael-2.1.4.min.js"></script>
-                    <script src="justgage.js"></script>
-                    <script>
-                    var g4;
-                    document.addEventListener("DOMContentLoaded", function(event) {
-                        g4 = new JustGage({
-                            id: "g4",
-                            title: "Phosphorus",
-                            value: 1,
-                            min: 0,
-                            max: 14,
-                            gaugeWidthScale: 0.7,
-                            counter: true,
-                            titleFontColor: "#000",
-                            titleFontFamily: "Georgia",
-                            titlePosition: "below",
-                            valueFontColor: "#fff",
-                            valueFontFamily: "Georgia",
-                            titleFontFamily: "Vollkorn",
-                        });
-                    
-                        });
-                    </script>
-        </div>
-    </div>
-
-    <!-- เป็นส่วนที่รวบเกจทั้ง 4 ไว้ด้วยกัน จะเเสดงในส่วนล่าง-->
-    <div class="container1">
-        <!-- เป็นส่วนของเกจ Potassium ที่จะเเสดงค่าต่างๆที่รับมาจากฐานข้อมูล -->
-        <div id="g5" class="gauge5">
-            <h3 id='temp5'>Potassium: </h3>
-            <h4 id="pts">Average of Potassium: 0000000</h4>
-            <h4 id="ptsmax">Maximum of Potassium: 0000000</h4>
-            <h4 id="ptsmin">Minimum of Potassium: 0000000</h4>
-                <script src="raphael-2.1.4.min.js"></script>
-                    <script src="justgage.js"></script>
-                    <script>
-                    var g5;
-                    document.addEventListener("DOMContentLoaded", function(event) {
-                        g5 = new JustGage({
-                            id: "g5",
-                            title: "Potassium",
-                            value: 1,
-                            min: 0,
-                            max: 200,
-                            gaugeWidthScale: 0.7,
-                            counter: true,
-                            titleFontColor: "#000",
-                            titleFontFamily: "Georgia",
-                            titlePosition: "below",
-                            valueFontColor: "#fff",
-                            valueFontFamily: "Georgia",
-                            titleFontFamily: "Vollkorn",
-                        });
-                    
-                        });
-                    </script>
-        </div>
-        <!-- เป็นส่วนของเกจ Temperature C ที่จะเเสดงค่าต่างๆที่รับมาจากฐานข้อมูล -->
-        <div id="g6" class="gauge6">
-            <h3 id='temp6'>Temperature: </h3>
-            <h4 id="tptc">Average of Temperature: 0000000</h4>
-            <h4 id="tptcmax">Maximum of Temperature: 0000000</h4>
-            <h4 id="tptcmin">Minimum of Temperature: 0000000</h4>
-                <script src="raphael-2.1.4.min.js"></script>
-                    <script src="justgage.js"></script>
-                    <script>
-                    var g6;
-                    document.addEventListener("DOMContentLoaded", function(event) {
-                        g6 = new JustGage({
-                            id: "g6",
-                            title: "Temperature Celsius",
-                            value: 1,
-                            min: 0,
-                            max: 50,
-                            gaugeWidthScale: 0.7,
-                            counter: true,
-                            titleFontColor: "#000",
-                            titleFontFamily: "Georgia",
-                            titlePosition: "below",
-                            valueFontColor: "#fff",
-                            valueFontFamily: "Georgia",
-                            titleFontFamily: "Vollkorn",
-                        });
-                    
-                        });
-                    </script>
-        </div>
-        <!-- เป็นส่วนของเกจ Temperature F ที่จะเเสดงค่าต่างๆที่รับมาจากฐานข้อมูล -->
-        <div id="g7" class="gauge7">
-            <h3 id='temp7'>Temperature: </h3>
-            <h4 id="tptf">Average of Temperature: 0000000</h4>
-            <h4 id="tptfmax">Maximum of Temperature: 0000000</h4>
-            <h4 id="tptfmin">Minimum of Temperature: 0000000</h4>
-                <script src="raphael-2.1.4.min.js"></script>
-                    <script src="justgage.js"></script>
-                    <script>
-                    var g7;
-                    document.addEventListener("DOMContentLoaded", function(event) {
-                        g7 = new JustGage({
-                            id: "g7",
-                            title: "Temperature Fahrenheit",
-                            value: 1,
-                            min: 0,
-                            max: 300,
-                            gaugeWidthScale: 0.7,
-                            counter: true,
-                            titleFontColor: "#000",
-                            titleFontFamily: "Georgia",
-                            titlePosition: "below",
-                            valueFontColor: "#fff",
-                            valueFontFamily: "Georgia",
-                            titleFontFamily: "Vollkorn",
-                        });
-                    
-                        });
-                    </script>
-        </div>
-        <!-- เป็นส่วนของเกจ pH ที่จะเเสดงค่าต่างๆที่รับมาจากฐานข้อมูล -->
-        <div id="g8" class="gauge8">
-            <h3 id='temp8'> pH: </h3>
-            <h4 id="ph">Average of pH: 0000000</h4>
-            <h4 id="phmax">Maximum of pH: 0000000</h4>
-            <h4 id="phmin">Minimum of pH: 0000000</h4>
-                <script src="raphael-2.1.4.min.js"></script>
-                    <script src="justgage.js"></script>
-                    <script>
-                    var g8;
-                    document.addEventListener("DOMContentLoaded", function(event) {
-                        g8 = new JustGage({
-                            id: "g8",
-                            title: "pH",
-                            value: 1,
-                            min: 0,
-                            max: 14,
-                            gaugeWidthScale: 0.7,
-                            counter: true,
-                            titleFontColor: "#000",
-                            titleFontFamily: "Georgia",
-                            titlePosition: "below",
-                            valueFontColor: "#fff",
-                            valueFontFamily: "Georgia",
-                            titleFontFamily: "Vollkorn",
-                        });
-                    
-                        });
-                    </script>
-        </div>
-    </div>
-</div>
-</div>        
 </body>
 </html>
