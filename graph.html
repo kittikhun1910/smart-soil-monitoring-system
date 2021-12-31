@@ -11,7 +11,7 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular.js"></script>
     <script src="https://www.gstatic.com/firebasejs/3.4.0/firebase.js"></script>
 
-    <!-- ส่วนนี้เป็นการดึงค่าต่างๆที่ต้องใช้เพื่อเปรียบเที่ยบค่าที่ได้มากับข้อมูลที่มี ส่วนนี้ภานในอนาคตเราจะอาจจะทำเพิ่มเติม -->
+    <!-- ส่วนนี้เป็นการดึงค่าต่างๆที่ต้องใช้เพื่อเปรียบเที่ยบค่าที่ได้มากับข้อมูลที่มี ส่วนนี้ภายในอนาคตเราจะอาจจะทำเพิ่มเติม -->
     <script>
 
         // Initialize Firebase
@@ -26,42 +26,41 @@
         var wspeed_curf=0;
         var wdir_curf=0;
 
-        // ตัวแปรสำหรับกราฟอุณหภูมิ
+        // ตัวแปรสำหรับค่าความชื้นในอากาศ
         var dps = []; // dataPoints
         var xVal = 0;
-        // ตัวแปร ความชื้น
+        // ตัวแปรสำหรับค่าความชื้นในดิน
         var dps1 = []; // dataPoints
 		var xVal1 = 0;
-		// ตัวแปร ความเข้มแสง
+		// ตัวแปรสำหรับค่า Nitrogen
         var dps2 = []; // dataPoints
 		var xVal2 = 0;
-		// ตัวแปร pm2.5
+		// ตัวแปรสำหรับค่า Phosphorus
         var dps3 = []; // dataPoints
 		var xVal3 = 0;
-		// ตัวแปร ความกดอากาศ
+		// ตัวแปรสำหรับค่า Potassium
         var dps4 = []; // dataPoints
 		var xVal4 = 0;
-		// ตัวแปร ปริมาณน้ำฝน
+		// ตัวแปรสำหรับค่า TemperatureC
         var dps5 = []; // dataPoints
 		var xVal5 = 0;
-		// ตัวแปร ความเร็วลม
+		// ตัวแปรสำหรับค่า TemperatureF
         var dps6 = []; // dataPoints
 		var xVal6 = 0;
-		// ตัวแปร ทิศทางลม
+		// ตัวแปรสำหรับค่า pH
         var dps7 = []; // dataPoints
 		var xVal7 = 0;
 
         angular.module('firebaseApp', []).service('firebaseService', function () {
-            // ���ҧ Function ���� init Firebase ��ҡѺ app ���
+            // สร้าง Function เพื่อ init Firebase เข้ากับ app เรา
             this.initFirebase = function () {
                 var config = {
-
-
                     apiKey: "AIzaSyBjrPJOwH2YJ-aAIvDdJf1PcY6_eT1Hqtc",
                     authDomain: "soil-monitoring-system-961a3.firebaseapp.com",
                     databaseURL: "https://soil-monitoring-system-961a3-default-rtdb.firebaseio.com",
 
                 };
+				// เป็นการดึงค่าจากฐานข้อมูลเพื่อนำข้อมูลมาใช้
                 firebase.initializeApp(config);
                 firebaseRef_hum = firebase.database().ref("Push/Humidity").limitToLast(61);
                 firebaseRef_mois = firebase.database().ref("Push/Moisture").limitToLast(61);
@@ -81,7 +80,7 @@
             }
 
 
-            // ���ҧ Function ������ event �ͧ Firebase
+            // สร้าง Function เพื่อ init Firebase เข้ากับ app เรา
             this.eventFirebase = function () {
 
                     firebaseRef.on('value', function(data) {
@@ -171,7 +170,7 @@
                      
                     })
 
-
+				// เป็นการดึงค่าตัวเเปรเวลามาเก็บไว้ใน datas เเละนำค่าไปใช้ในกราฟ
             	firebaseRef_min.on('value', function (data) {
 	                	const datas_min = Object.values(data.val());
 	                	console.log(datas_min);
@@ -188,14 +187,13 @@
 		                	const datas_day = Object.values(data.val());
 		                	console.log(datas_day);
 
+				// ทำการดึงข้อมูล ความชื้นในอากาศ Humidity (%) จากฐานข้อมูลมาเก็บไว้ในตัวเเปล datas เเละนำค่าไปใช้
                 firebaseRef_hum.on('value', function (data) {
                 	const datas = Object.values(data.val());
                 	console.log(datas);
-                	
-	                	
-                	// เวลา ในแกน x
-            	
-					
+
+					// สำหรับโชว์กราฟ
+					// กราฟสำหรับโชว์ความชื้นในอากาศ Humidity (%)
 					var chart = new CanvasJS.Chart("chartContainer", {
 						animationEnabled: true,
 						theme: "phos",
@@ -203,12 +201,13 @@
 							text: "ความชื้นในอากาศ Humidity (%)"
 						},
 						axisX:{  
-							//Try Changing to MMMM
+							//เป็นการเเสดงค่าเวลาในเเกน X
 			              	valueFormatString: "HH:mm TT"
 					    },
 						data: [{        
 							type: "line",
 					      	indexLabelFontSize: 16,
+							// นำค่าที่ดึงจากฐานข้อมูลมาวาดกราฟ โดยมีค่าเวลา เเละข้อมูล
 							dataPoints: [
 								{ x: new Date(datas_hour[0]*1000), y: datas[0] },
 								{ x: new Date(datas_hour[2]*1000), y: datas[2] },
@@ -248,451 +247,466 @@
 					});
 					chart.render();
 					})
-				
-            firebaseRef_mois.on('value', function (data) {
-                	const datas = Object.values(data.val());
-                	console.log(datas);
 
-					// สำหรับโชว์กราฟ
-					// กราฟสำหรับโชว์ความชื้น
+				// ทำการดึงข้อมูล ความชื้นในดิน Moisture (%) จากฐานข้อมูลมาเก็บไว้ในตัวเเปล datas เเละนำค่าไปใช้		
+				firebaseRef_mois.on('value', function (data) {
+						const datas = Object.values(data.val());
+						console.log(datas);
 
-					var chart = new CanvasJS.Chart("chartContainer1", {
-						animationEnabled: true,
-						theme: "phos",
-						title:{
-							text: "ความชื้นในดิน Moisture (%)"
-						},
-						axisX:{  
-							//Try Changing to MMMM
-			              	valueFormatString: "HH:mm TT"
-					    },
-						data: [{        
-							type: "line",
-					      	indexLabelFontSize: 16,
-							dataPoints: [
-                            { x: new Date(datas_hour[0]*1000), y: datas[0] },
-								{ x: new Date(datas_hour[2]*1000), y: datas[2] },
-								{ x: new Date(datas_hour[4]*1000), y: datas[4] },
-								{ x: new Date(datas_hour[6]*1000), y: datas[6] },
-								{ x: new Date(datas_hour[8]*1000), y: datas[8] },
-								{ x: new Date(datas_hour[10]*1000), y: datas[10] },
-								{ x: new Date(datas_hour[12]*1000), y: datas[12] },
-								{ x: new Date(datas_hour[14]*1000), y: datas[14] },
-								{ x: new Date(datas_hour[16]*1000), y: datas[16] },
-								{ x: new Date(datas_hour[18]*1000), y: datas[18] },
-								{ x: new Date(datas_hour[20]*1000), y: datas[20] },
-								{ x: new Date(datas_hour[22]*1000), y: datas[22] },
-								{ x: new Date(datas_hour[24]*1000), y: datas[24] },
-								{ x: new Date(datas_hour[26]*1000), y: datas[26] },
-								{ x: new Date(datas_hour[28]*1000), y: datas[28] },
-								{ x: new Date(datas_hour[30]*1000), y: datas[30] },
-								{ x: new Date(datas_hour[32]*1000), y: datas[32] },
-								{ x: new Date(datas_hour[34]*1000), y: datas[34] },
-								{ x: new Date(datas_hour[36]*1000), y: datas[36] },
-								{ x: new Date(datas_hour[38]*1000), y: datas[38] },
-								{ x: new Date(datas_hour[40]*1000), y: datas[40] },
-								{ x: new Date(datas_hour[42]*1000), y: datas[42] },
-								{ x: new Date(datas_hour[44]*1000), y: datas[44] },
-								{ x: new Date(datas_hour[46]*1000), y: datas[46] },
-								{ x: new Date(datas_hour[48]*1000), y: datas[48] },
-								{ x: new Date(datas_hour[50]*1000), y: datas[50] },
-								{ x: new Date(datas_hour[52]*1000), y: datas[52] },
-								{ x: new Date(datas_hour[54]*1000), y: datas[54] },
-								{ x: new Date(datas_hour[56]*1000), y: datas[56] },
-								{ x: new Date(datas_hour[58]*1000), y: datas[58] },
-								{ x: new Date(datas_hour[60]*1000), y: datas[60] }
-								
-								
-							]
-						}]
-					});
-					chart.render();
+						// สำหรับโชว์กราฟ
+						// กราฟสำหรับโชว์ความชื้นในดิน Moisture (%)
+
+						var chart = new CanvasJS.Chart("chartContainer1", {
+							animationEnabled: true,
+							theme: "phos",
+							title:{
+								text: "ความชื้นในดิน Moisture (%)"
+							},
+							axisX:{  
+								//เป็นการเเสดงค่าเวลาในเเกน X
+								valueFormatString: "HH:mm TT"
+							},
+							data: [{        
+								type: "line",
+								indexLabelFontSize: 16,
+								// นำค่าที่ดึงจากฐานข้อมูลมาวาดกราฟ โดยมีค่าเวลา เเละข้อมูล
+								dataPoints: [
+								{ x: new Date(datas_hour[0]*1000), y: datas[0] },
+									{ x: new Date(datas_hour[2]*1000), y: datas[2] },
+									{ x: new Date(datas_hour[4]*1000), y: datas[4] },
+									{ x: new Date(datas_hour[6]*1000), y: datas[6] },
+									{ x: new Date(datas_hour[8]*1000), y: datas[8] },
+									{ x: new Date(datas_hour[10]*1000), y: datas[10] },
+									{ x: new Date(datas_hour[12]*1000), y: datas[12] },
+									{ x: new Date(datas_hour[14]*1000), y: datas[14] },
+									{ x: new Date(datas_hour[16]*1000), y: datas[16] },
+									{ x: new Date(datas_hour[18]*1000), y: datas[18] },
+									{ x: new Date(datas_hour[20]*1000), y: datas[20] },
+									{ x: new Date(datas_hour[22]*1000), y: datas[22] },
+									{ x: new Date(datas_hour[24]*1000), y: datas[24] },
+									{ x: new Date(datas_hour[26]*1000), y: datas[26] },
+									{ x: new Date(datas_hour[28]*1000), y: datas[28] },
+									{ x: new Date(datas_hour[30]*1000), y: datas[30] },
+									{ x: new Date(datas_hour[32]*1000), y: datas[32] },
+									{ x: new Date(datas_hour[34]*1000), y: datas[34] },
+									{ x: new Date(datas_hour[36]*1000), y: datas[36] },
+									{ x: new Date(datas_hour[38]*1000), y: datas[38] },
+									{ x: new Date(datas_hour[40]*1000), y: datas[40] },
+									{ x: new Date(datas_hour[42]*1000), y: datas[42] },
+									{ x: new Date(datas_hour[44]*1000), y: datas[44] },
+									{ x: new Date(datas_hour[46]*1000), y: datas[46] },
+									{ x: new Date(datas_hour[48]*1000), y: datas[48] },
+									{ x: new Date(datas_hour[50]*1000), y: datas[50] },
+									{ x: new Date(datas_hour[52]*1000), y: datas[52] },
+									{ x: new Date(datas_hour[54]*1000), y: datas[54] },
+									{ x: new Date(datas_hour[56]*1000), y: datas[56] },
+									{ x: new Date(datas_hour[58]*1000), y: datas[58] },
+									{ x: new Date(datas_hour[60]*1000), y: datas[60] }
+									
+									
+								]
+							}]
+						});
+						//เป็นการสั่งให้กราฟเเสดงค่า
+						chart.render();
+
+						})
+
+				// ทำการดึงข้อมูล Nitrogen (มิลลิกรัม/กิโลกรัม หรือ PPM)จากฐานข้อมูลมาเก็บไว้ในตัวเเปล datas เเละนำค่าไปใช้	
+				firebaseRef_nitro.on('value', function (data) {
+						const datas = Object.values(data.val());
+						console.log(datas);
+
+						// สำหรับโชว์กราฟ
+						// กราฟสำหรับโชว์ Nitrogen (มิลลิกรัม/กิโลกรัม หรือ PPM)
+
+						var chart = new CanvasJS.Chart("chartContainer2", {
+							animationEnabled: true,
+							theme: "phos",
+							title:{
+								text: "Nitrogen (มิลลิกรัม/กิโลกรัม หรือ PPM)"
+							},
+							axisX:{  
+								//เป็นการเเสดงค่าเวลาในเเกน X
+								valueFormatString: "HH:mm TT"
+							},
+							data: [{        
+								type: "line",
+								indexLabelFontSize: 16,
+								// นำค่าที่ดึงจากฐานข้อมูลมาวาดกราฟ โดยมีค่าเวลา เเละข้อมูล
+								dataPoints: [
+								{ x: new Date(datas_hour[0]*1000), y: datas[0] },
+									{ x: new Date(datas_hour[2]*1000), y: datas[2] },
+									{ x: new Date(datas_hour[4]*1000), y: datas[4] },
+									{ x: new Date(datas_hour[6]*1000), y: datas[6] },
+									{ x: new Date(datas_hour[8]*1000), y: datas[8] },
+									{ x: new Date(datas_hour[10]*1000), y: datas[10] },
+									{ x: new Date(datas_hour[12]*1000), y: datas[12] },
+									{ x: new Date(datas_hour[14]*1000), y: datas[14] },
+									{ x: new Date(datas_hour[16]*1000), y: datas[16] },
+									{ x: new Date(datas_hour[18]*1000), y: datas[18] },
+									{ x: new Date(datas_hour[20]*1000), y: datas[20] },
+									{ x: new Date(datas_hour[22]*1000), y: datas[22] },
+									{ x: new Date(datas_hour[24]*1000), y: datas[24] },
+									{ x: new Date(datas_hour[26]*1000), y: datas[26] },
+									{ x: new Date(datas_hour[28]*1000), y: datas[28] },
+									{ x: new Date(datas_hour[30]*1000), y: datas[30] },
+									{ x: new Date(datas_hour[32]*1000), y: datas[32] },
+									{ x: new Date(datas_hour[34]*1000), y: datas[34] },
+									{ x: new Date(datas_hour[36]*1000), y: datas[36] },
+									{ x: new Date(datas_hour[38]*1000), y: datas[38] },
+									{ x: new Date(datas_hour[40]*1000), y: datas[40] },
+									{ x: new Date(datas_hour[42]*1000), y: datas[42] },
+									{ x: new Date(datas_hour[44]*1000), y: datas[44] },
+									{ x: new Date(datas_hour[46]*1000), y: datas[46] },
+									{ x: new Date(datas_hour[48]*1000), y: datas[48] },
+									{ x: new Date(datas_hour[50]*1000), y: datas[50] },
+									{ x: new Date(datas_hour[52]*1000), y: datas[52] },
+									{ x: new Date(datas_hour[54]*1000), y: datas[54] },
+									{ x: new Date(datas_hour[56]*1000), y: datas[56] },
+									{ x: new Date(datas_hour[58]*1000), y: datas[58] },
+									{ x: new Date(datas_hour[60]*1000), y: datas[60] }
+									
+									
+								]
+							}]
+						});
+						//เป็นการสั่งให้กราฟเเสดงค่า
+						chart.render();
+					})
+
+				// ทำการดึงข้อมูลPhosphorus (มิลลิกรัม/กิโลกรัม หรือ PPM)จากฐานข้อมูลมาเก็บไว้ในตัวเเปล datas เเละนำค่าไปใช้
+				firebaseRef_phos.on('value', function (data) {
+						const datas = Object.values(data.val());
+						console.log(datas);
+
+						// สำหรับโชว์กราฟ
+						// กราฟสำหรับ Phosphorus (มิลลิกรัม/กิโลกรัม หรือ PPM)
+
+						var chart = new CanvasJS.Chart("chartContainer3", {
+							animationEnabled: true,
+							theme: "phos",
+							title:{
+								text: "Phosphorus (มิลลิกรัม/กิโลกรัม หรือ PPM)"
+							},
+							axisX:{  
+								//เป็นการเเสดงค่าเวลาในเเกน X
+								valueFormatString: "HH:mm TT"
+							},
+							data: [{        
+								type: "line",
+								indexLabelFontSize: 16,
+								// นำค่าที่ดึงจากฐานข้อมูลมาวาดกราฟ โดยมีค่าเวลา เเละข้อมูล
+								dataPoints: [
+								{ x: new Date(datas_hour[0]*1000), y: datas[0] },
+									{ x: new Date(datas_hour[2]*1000), y: datas[2] },
+									{ x: new Date(datas_hour[4]*1000), y: datas[4] },
+									{ x: new Date(datas_hour[6]*1000), y: datas[6] },
+									{ x: new Date(datas_hour[8]*1000), y: datas[8] },
+									{ x: new Date(datas_hour[10]*1000), y: datas[10] },
+									{ x: new Date(datas_hour[12]*1000), y: datas[12] },
+									{ x: new Date(datas_hour[14]*1000), y: datas[14] },
+									{ x: new Date(datas_hour[16]*1000), y: datas[16] },
+									{ x: new Date(datas_hour[18]*1000), y: datas[18] },
+									{ x: new Date(datas_hour[20]*1000), y: datas[20] },
+									{ x: new Date(datas_hour[22]*1000), y: datas[22] },
+									{ x: new Date(datas_hour[24]*1000), y: datas[24] },
+									{ x: new Date(datas_hour[26]*1000), y: datas[26] },
+									{ x: new Date(datas_hour[28]*1000), y: datas[28] },
+									{ x: new Date(datas_hour[30]*1000), y: datas[30] },
+									{ x: new Date(datas_hour[32]*1000), y: datas[32] },
+									{ x: new Date(datas_hour[34]*1000), y: datas[34] },
+									{ x: new Date(datas_hour[36]*1000), y: datas[36] },
+									{ x: new Date(datas_hour[38]*1000), y: datas[38] },
+									{ x: new Date(datas_hour[40]*1000), y: datas[40] },
+									{ x: new Date(datas_hour[42]*1000), y: datas[42] },
+									{ x: new Date(datas_hour[44]*1000), y: datas[44] },
+									{ x: new Date(datas_hour[46]*1000), y: datas[46] },
+									{ x: new Date(datas_hour[48]*1000), y: datas[48] },
+									{ x: new Date(datas_hour[50]*1000), y: datas[50] },
+									{ x: new Date(datas_hour[52]*1000), y: datas[52] },
+									{ x: new Date(datas_hour[54]*1000), y: datas[54] },
+									{ x: new Date(datas_hour[56]*1000), y: datas[56] },
+									{ x: new Date(datas_hour[58]*1000), y: datas[58] },
+									{ x: new Date(datas_hour[60]*1000), y: datas[60] }
+									
+									
+								]
+							}]
+						});
+						//เป็นการสั่งให้กราฟเเสดงค่า
+						chart.render();
+					})
+
+				// ทำการดึงข้อมูลPotassium (มิลลิกรัม/กิโลกรัม หรือ PPM)จากฐานข้อมูลมาเก็บไว้ในตัวเเปล datas เเละนำค่าไปใช้
+				firebaseRef_potas.on('value', function (data) {
+						const datas = Object.values(data.val());
+						console.log(datas);
+
+						// สำหรับโชว์กราฟ
+						// กราฟสำหรับโชว์Potassium (มิลลิกรัม/กิโลกรัม หรือ PPM)
+
+						var chart = new CanvasJS.Chart("chartContainer4", {
+							animationEnabled: true,
+							theme: "phos",
+							title:{
+								text: "Potassium (มิลลิกรัม/กิโลกรัม หรือ PPM)"
+							},
+							axisX:{  
+								//เป็นการเเสดงค่าเวลาในเเกน X
+								valueFormatString: "HH:mm TT"
+							},
+							data: [{        
+								type: "line",
+								indexLabelFontSize: 16,
+								// นำค่าที่ดึงจากฐานข้อมูลมาวาดกราฟ โดยมีค่าเวลา เเละข้อมูล
+								dataPoints: [
+								{ x: new Date(datas_hour[0]*1000), y: datas[0] },
+									{ x: new Date(datas_hour[2]*1000), y: datas[2] },
+									{ x: new Date(datas_hour[4]*1000), y: datas[4] },
+									{ x: new Date(datas_hour[6]*1000), y: datas[6] },
+									{ x: new Date(datas_hour[8]*1000), y: datas[8] },
+									{ x: new Date(datas_hour[10]*1000), y: datas[10] },
+									{ x: new Date(datas_hour[12]*1000), y: datas[12] },
+									{ x: new Date(datas_hour[14]*1000), y: datas[14] },
+									{ x: new Date(datas_hour[16]*1000), y: datas[16] },
+									{ x: new Date(datas_hour[18]*1000), y: datas[18] },
+									{ x: new Date(datas_hour[20]*1000), y: datas[20] },
+									{ x: new Date(datas_hour[22]*1000), y: datas[22] },
+									{ x: new Date(datas_hour[24]*1000), y: datas[24] },
+									{ x: new Date(datas_hour[26]*1000), y: datas[26] },
+									{ x: new Date(datas_hour[28]*1000), y: datas[28] },
+									{ x: new Date(datas_hour[30]*1000), y: datas[30] },
+									{ x: new Date(datas_hour[32]*1000), y: datas[32] },
+									{ x: new Date(datas_hour[34]*1000), y: datas[34] },
+									{ x: new Date(datas_hour[36]*1000), y: datas[36] },
+									{ x: new Date(datas_hour[38]*1000), y: datas[38] },
+									{ x: new Date(datas_hour[40]*1000), y: datas[40] },
+									{ x: new Date(datas_hour[42]*1000), y: datas[42] },
+									{ x: new Date(datas_hour[44]*1000), y: datas[44] },
+									{ x: new Date(datas_hour[46]*1000), y: datas[46] },
+									{ x: new Date(datas_hour[48]*1000), y: datas[48] },
+									{ x: new Date(datas_hour[50]*1000), y: datas[50] },
+									{ x: new Date(datas_hour[52]*1000), y: datas[52] },
+									{ x: new Date(datas_hour[54]*1000), y: datas[54] },
+									{ x: new Date(datas_hour[56]*1000), y: datas[56] },
+									{ x: new Date(datas_hour[58]*1000), y: datas[58] },
+									{ x: new Date(datas_hour[60]*1000), y: datas[60] }
+									
+									
+								]
+							}]
+						});
+						//เป็นการสั่งให้กราฟเเสดงค่า
+						chart.render();
 
 					})
-                
 
 
-            firebaseRef_nitro.on('value', function (data) {
-                	const datas = Object.values(data.val());
-                	console.log(datas);
+				// ทำการดึงข้อมูลค่าพีเฮท  (pH) จากฐานข้อมูลมาเก็บไว้ในตัวเเปล datas เเละนำค่าไปใช้
+				firebaseRef_ph.on('value', function (data) {
+						const datas = Object.values(data.val());
+						console.log(datas);
 
-					// สำหรับโชว์กราฟ
-					// กราฟสำหรับโชว์ควาสว่าง
+						// สำหรับโชว์กราฟ
+						// กราฟสำหรับโชว์ค่าพีเฮท  (pH)
 
-					var chart = new CanvasJS.Chart("chartContainer2", {
-						animationEnabled: true,
-						theme: "phos",
-						title:{
-							text: "Nitrogen (มิลลิกรัม/กิโลกรัม หรือ PPM)"
-						},
-						axisX:{  
-							//Try Changing to MMMM
-			              	valueFormatString: "HH:mm TT"
-					    },
-						data: [{        
-							type: "line",
-					      	indexLabelFontSize: 16,
-							dataPoints: [
-                            { x: new Date(datas_hour[0]*1000), y: datas[0] },
-								{ x: new Date(datas_hour[2]*1000), y: datas[2] },
-								{ x: new Date(datas_hour[4]*1000), y: datas[4] },
-								{ x: new Date(datas_hour[6]*1000), y: datas[6] },
-								{ x: new Date(datas_hour[8]*1000), y: datas[8] },
-								{ x: new Date(datas_hour[10]*1000), y: datas[10] },
-								{ x: new Date(datas_hour[12]*1000), y: datas[12] },
-								{ x: new Date(datas_hour[14]*1000), y: datas[14] },
-								{ x: new Date(datas_hour[16]*1000), y: datas[16] },
-								{ x: new Date(datas_hour[18]*1000), y: datas[18] },
-								{ x: new Date(datas_hour[20]*1000), y: datas[20] },
-								{ x: new Date(datas_hour[22]*1000), y: datas[22] },
-								{ x: new Date(datas_hour[24]*1000), y: datas[24] },
-								{ x: new Date(datas_hour[26]*1000), y: datas[26] },
-								{ x: new Date(datas_hour[28]*1000), y: datas[28] },
-								{ x: new Date(datas_hour[30]*1000), y: datas[30] },
-								{ x: new Date(datas_hour[32]*1000), y: datas[32] },
-								{ x: new Date(datas_hour[34]*1000), y: datas[34] },
-								{ x: new Date(datas_hour[36]*1000), y: datas[36] },
-								{ x: new Date(datas_hour[38]*1000), y: datas[38] },
-								{ x: new Date(datas_hour[40]*1000), y: datas[40] },
-								{ x: new Date(datas_hour[42]*1000), y: datas[42] },
-								{ x: new Date(datas_hour[44]*1000), y: datas[44] },
-								{ x: new Date(datas_hour[46]*1000), y: datas[46] },
-								{ x: new Date(datas_hour[48]*1000), y: datas[48] },
-								{ x: new Date(datas_hour[50]*1000), y: datas[50] },
-								{ x: new Date(datas_hour[52]*1000), y: datas[52] },
-								{ x: new Date(datas_hour[54]*1000), y: datas[54] },
-								{ x: new Date(datas_hour[56]*1000), y: datas[56] },
-								{ x: new Date(datas_hour[58]*1000), y: datas[58] },
-								{ x: new Date(datas_hour[60]*1000), y: datas[60] }
-								
-								
-							]
-						}]
-					});
-					chart.render();
-                })
+						var chart = new CanvasJS.Chart("chartContainer5", {
+							animationEnabled: true,
+							theme: "phos",
+							title:{
+								text: "ค่าพีเฮท  (pH)"
+							},
+							axisX:{  
+								//เป็นการเเสดงค่าเวลาในเเกน X
+								valueFormatString: "HH:mm TT"
+							},
+							data: [{        
+								type: "line",
+								indexLabelFontSize: 16,
+								// นำค่าที่ดึงจากฐานข้อมูลมาวาดกราฟ โดยมีค่าเวลา เเละข้อมูล
+								dataPoints: [
+								{ x: new Date(datas_hour[0]*1000), y: datas[0] },
+									{ x: new Date(datas_hour[2]*1000), y: datas[2] },
+									{ x: new Date(datas_hour[4]*1000), y: datas[4] },
+									{ x: new Date(datas_hour[6]*1000), y: datas[6] },
+									{ x: new Date(datas_hour[8]*1000), y: datas[8] },
+									{ x: new Date(datas_hour[10]*1000), y: datas[10] },
+									{ x: new Date(datas_hour[12]*1000), y: datas[12] },
+									{ x: new Date(datas_hour[14]*1000), y: datas[14] },
+									{ x: new Date(datas_hour[16]*1000), y: datas[16] },
+									{ x: new Date(datas_hour[18]*1000), y: datas[18] },
+									{ x: new Date(datas_hour[20]*1000), y: datas[20] },
+									{ x: new Date(datas_hour[22]*1000), y: datas[22] },
+									{ x: new Date(datas_hour[24]*1000), y: datas[24] },
+									{ x: new Date(datas_hour[26]*1000), y: datas[26] },
+									{ x: new Date(datas_hour[28]*1000), y: datas[28] },
+									{ x: new Date(datas_hour[30]*1000), y: datas[30] },
+									{ x: new Date(datas_hour[32]*1000), y: datas[32] },
+									{ x: new Date(datas_hour[34]*1000), y: datas[34] },
+									{ x: new Date(datas_hour[36]*1000), y: datas[36] },
+									{ x: new Date(datas_hour[38]*1000), y: datas[38] },
+									{ x: new Date(datas_hour[40]*1000), y: datas[40] },
+									{ x: new Date(datas_hour[42]*1000), y: datas[42] },
+									{ x: new Date(datas_hour[44]*1000), y: datas[44] },
+									{ x: new Date(datas_hour[46]*1000), y: datas[46] },
+									{ x: new Date(datas_hour[48]*1000), y: datas[48] },
+									{ x: new Date(datas_hour[50]*1000), y: datas[50] },
+									{ x: new Date(datas_hour[52]*1000), y: datas[52] },
+									{ x: new Date(datas_hour[54]*1000), y: datas[54] },
+									{ x: new Date(datas_hour[56]*1000), y: datas[56] },
+									{ x: new Date(datas_hour[58]*1000), y: datas[58] },
+									{ x: new Date(datas_hour[60]*1000), y: datas[60] }
+									
+									
+								]
+							}]
+						});
+						//เป็นการสั่งให้กราฟเเสดงค่า
+						chart.render();
 
-            firebaseRef_phos.on('value', function (data) {
-                	const datas = Object.values(data.val());
-                	console.log(datas);
-
-					// สำหรับโชว์กราฟ
-					// กราฟสำหรับโชว์ความชื้น
-
-					var chart = new CanvasJS.Chart("chartContainer3", {
-						animationEnabled: true,
-						theme: "phos",
-						title:{
-							text: "Phosphorus (มิลลิกรัม/กิโลกรัม หรือ PPM)"
-						},
-						axisX:{  
-							//Try Changing to MMMM
-			              	valueFormatString: "HH:mm TT"
-					    },
-						data: [{        
-							type: "line",
-					      	indexLabelFontSize: 16,
-							dataPoints: [
-                            { x: new Date(datas_hour[0]*1000), y: datas[0] },
-								{ x: new Date(datas_hour[2]*1000), y: datas[2] },
-								{ x: new Date(datas_hour[4]*1000), y: datas[4] },
-								{ x: new Date(datas_hour[6]*1000), y: datas[6] },
-								{ x: new Date(datas_hour[8]*1000), y: datas[8] },
-								{ x: new Date(datas_hour[10]*1000), y: datas[10] },
-								{ x: new Date(datas_hour[12]*1000), y: datas[12] },
-								{ x: new Date(datas_hour[14]*1000), y: datas[14] },
-								{ x: new Date(datas_hour[16]*1000), y: datas[16] },
-								{ x: new Date(datas_hour[18]*1000), y: datas[18] },
-								{ x: new Date(datas_hour[20]*1000), y: datas[20] },
-								{ x: new Date(datas_hour[22]*1000), y: datas[22] },
-								{ x: new Date(datas_hour[24]*1000), y: datas[24] },
-								{ x: new Date(datas_hour[26]*1000), y: datas[26] },
-								{ x: new Date(datas_hour[28]*1000), y: datas[28] },
-								{ x: new Date(datas_hour[30]*1000), y: datas[30] },
-								{ x: new Date(datas_hour[32]*1000), y: datas[32] },
-								{ x: new Date(datas_hour[34]*1000), y: datas[34] },
-								{ x: new Date(datas_hour[36]*1000), y: datas[36] },
-								{ x: new Date(datas_hour[38]*1000), y: datas[38] },
-								{ x: new Date(datas_hour[40]*1000), y: datas[40] },
-								{ x: new Date(datas_hour[42]*1000), y: datas[42] },
-								{ x: new Date(datas_hour[44]*1000), y: datas[44] },
-								{ x: new Date(datas_hour[46]*1000), y: datas[46] },
-								{ x: new Date(datas_hour[48]*1000), y: datas[48] },
-								{ x: new Date(datas_hour[50]*1000), y: datas[50] },
-								{ x: new Date(datas_hour[52]*1000), y: datas[52] },
-								{ x: new Date(datas_hour[54]*1000), y: datas[54] },
-								{ x: new Date(datas_hour[56]*1000), y: datas[56] },
-								{ x: new Date(datas_hour[58]*1000), y: datas[58] },
-								{ x: new Date(datas_hour[60]*1000), y: datas[60] }
-								
-								
-							]
-						}]
-					});
-					chart.render();
-                })
-
-            firebaseRef_potas.on('value', function (data) {
-                	const datas = Object.values(data.val());
-                	console.log(datas);
-
-					// สำหรับโชว์กราฟ
-					// กราฟสำหรับโชว์ความชื้น
-
-					var chart = new CanvasJS.Chart("chartContainer4", {
-						animationEnabled: true,
-						theme: "phos",
-						title:{
-							text: "Potassium (มิลลิกรัม/กิโลกรัม หรือ PPM)"
-						},
-						axisX:{  
-							//Try Changing to MMMM
-			              	valueFormatString: "HH:mm TT"
-					    },
-						data: [{        
-							type: "line",
-					      	indexLabelFontSize: 16,
-							dataPoints: [
-                            { x: new Date(datas_hour[0]*1000), y: datas[0] },
-								{ x: new Date(datas_hour[2]*1000), y: datas[2] },
-								{ x: new Date(datas_hour[4]*1000), y: datas[4] },
-								{ x: new Date(datas_hour[6]*1000), y: datas[6] },
-								{ x: new Date(datas_hour[8]*1000), y: datas[8] },
-								{ x: new Date(datas_hour[10]*1000), y: datas[10] },
-								{ x: new Date(datas_hour[12]*1000), y: datas[12] },
-								{ x: new Date(datas_hour[14]*1000), y: datas[14] },
-								{ x: new Date(datas_hour[16]*1000), y: datas[16] },
-								{ x: new Date(datas_hour[18]*1000), y: datas[18] },
-								{ x: new Date(datas_hour[20]*1000), y: datas[20] },
-								{ x: new Date(datas_hour[22]*1000), y: datas[22] },
-								{ x: new Date(datas_hour[24]*1000), y: datas[24] },
-								{ x: new Date(datas_hour[26]*1000), y: datas[26] },
-								{ x: new Date(datas_hour[28]*1000), y: datas[28] },
-								{ x: new Date(datas_hour[30]*1000), y: datas[30] },
-								{ x: new Date(datas_hour[32]*1000), y: datas[32] },
-								{ x: new Date(datas_hour[34]*1000), y: datas[34] },
-								{ x: new Date(datas_hour[36]*1000), y: datas[36] },
-								{ x: new Date(datas_hour[38]*1000), y: datas[38] },
-								{ x: new Date(datas_hour[40]*1000), y: datas[40] },
-								{ x: new Date(datas_hour[42]*1000), y: datas[42] },
-								{ x: new Date(datas_hour[44]*1000), y: datas[44] },
-								{ x: new Date(datas_hour[46]*1000), y: datas[46] },
-								{ x: new Date(datas_hour[48]*1000), y: datas[48] },
-								{ x: new Date(datas_hour[50]*1000), y: datas[50] },
-								{ x: new Date(datas_hour[52]*1000), y: datas[52] },
-								{ x: new Date(datas_hour[54]*1000), y: datas[54] },
-								{ x: new Date(datas_hour[56]*1000), y: datas[56] },
-								{ x: new Date(datas_hour[58]*1000), y: datas[58] },
-								{ x: new Date(datas_hour[60]*1000), y: datas[60] }
-								
-								
-							]
-						}]
-					});
-					chart.render();
-
-                })
+					})
 
 
+				// ทำการดึงข้อมูลอุณหภูมิ (องศาเซลเซียส) จากฐานข้อมูลมาเก็บไว้ในตัวเเปล datas เเละนำค่าไปใช้
+				firebaseRef_tempc.on('value', function (data) {
+									const datas = Object.values(data.val());
+									console.log(datas);
 
-            firebaseRef_ph.on('value', function (data) {
-                	const datas = Object.values(data.val());
-                	console.log(datas);
+							// สำหรับโชว์กราฟ
+							// กราฟสำหรับโชว์อุณหภูมิ (องศาเซลเซียส)
 
-					// สำหรับโชว์กราฟ
-					// กราฟสำหรับโชว์ความชื้น
+							var chart = new CanvasJS.Chart("chartContainer6", {
+								animationEnabled: true,
+								theme: "wspeed2",
+								title:{
+									text: "อุณหภูมิ (องศาเซลเซียส)"
+								},
+								axisX:{  
+									//เป็นการเเสดงค่าเวลาในเเกน X
+									valueFormatString: "HH:mm TT"
+								},
+								data: [{        
+									type: "line",
+									indexLabelFontSize: 16,
+									// นำค่าที่ดึงจากฐานข้อมูลมาวาดกราฟ โดยมีค่าเวลา เเละข้อมูล
+									dataPoints: [
+									{ x: new Date(datas_hour[0]*1000), y: datas[0] },
+										{ x: new Date(datas_hour[2]*1000), y: datas[2] },
+										{ x: new Date(datas_hour[4]*1000), y: datas[4] },
+										{ x: new Date(datas_hour[6]*1000), y: datas[6] },
+										{ x: new Date(datas_hour[8]*1000), y: datas[8] },
+										{ x: new Date(datas_hour[10]*1000), y: datas[10] },
+										{ x: new Date(datas_hour[12]*1000), y: datas[12] },
+										{ x: new Date(datas_hour[14]*1000), y: datas[14] },
+										{ x: new Date(datas_hour[16]*1000), y: datas[16] },
+										{ x: new Date(datas_hour[18]*1000), y: datas[18] },
+										{ x: new Date(datas_hour[20]*1000), y: datas[20] },
+										{ x: new Date(datas_hour[22]*1000), y: datas[22] },
+										{ x: new Date(datas_hour[24]*1000), y: datas[24] },
+										{ x: new Date(datas_hour[26]*1000), y: datas[26] },
+										{ x: new Date(datas_hour[28]*1000), y: datas[28] },
+										{ x: new Date(datas_hour[30]*1000), y: datas[30] },
+										{ x: new Date(datas_hour[32]*1000), y: datas[32] },
+										{ x: new Date(datas_hour[34]*1000), y: datas[34] },
+										{ x: new Date(datas_hour[36]*1000), y: datas[36] },
+										{ x: new Date(datas_hour[38]*1000), y: datas[38] },
+										{ x: new Date(datas_hour[40]*1000), y: datas[40] },
+										{ x: new Date(datas_hour[42]*1000), y: datas[42] },
+										{ x: new Date(datas_hour[44]*1000), y: datas[44] },
+										{ x: new Date(datas_hour[46]*1000), y: datas[46] },
+										{ x: new Date(datas_hour[48]*1000), y: datas[48] },
+										{ x: new Date(datas_hour[50]*1000), y: datas[50] },
+										{ x: new Date(datas_hour[52]*1000), y: datas[52] },
+										{ x: new Date(datas_hour[54]*1000), y: datas[54] },
+										{ x: new Date(datas_hour[56]*1000), y: datas[56] },
+										{ x: new Date(datas_hour[58]*1000), y: datas[58] },
+										{ x: new Date(datas_hour[60]*1000), y: datas[60] }
+										
+										
+									]
+								}]
+							});
+							//เป็นการสั่งให้กราฟเเสดงค่า
+							chart.render();
 
-					var chart = new CanvasJS.Chart("chartContainer5", {
-						animationEnabled: true,
-						theme: "phos",
-						title:{
-							text: "ค่าพีเฮท  (pH)"
-						},
-						axisX:{  
-							//Try Changing to MMMM
-			              	valueFormatString: "HH:mm TT"
-					    },
-						data: [{        
-							type: "line",
-					      	indexLabelFontSize: 16,
-							dataPoints: [
-                            { x: new Date(datas_hour[0]*1000), y: datas[0] },
-								{ x: new Date(datas_hour[2]*1000), y: datas[2] },
-								{ x: new Date(datas_hour[4]*1000), y: datas[4] },
-								{ x: new Date(datas_hour[6]*1000), y: datas[6] },
-								{ x: new Date(datas_hour[8]*1000), y: datas[8] },
-								{ x: new Date(datas_hour[10]*1000), y: datas[10] },
-								{ x: new Date(datas_hour[12]*1000), y: datas[12] },
-								{ x: new Date(datas_hour[14]*1000), y: datas[14] },
-								{ x: new Date(datas_hour[16]*1000), y: datas[16] },
-								{ x: new Date(datas_hour[18]*1000), y: datas[18] },
-								{ x: new Date(datas_hour[20]*1000), y: datas[20] },
-								{ x: new Date(datas_hour[22]*1000), y: datas[22] },
-								{ x: new Date(datas_hour[24]*1000), y: datas[24] },
-								{ x: new Date(datas_hour[26]*1000), y: datas[26] },
-								{ x: new Date(datas_hour[28]*1000), y: datas[28] },
-								{ x: new Date(datas_hour[30]*1000), y: datas[30] },
-								{ x: new Date(datas_hour[32]*1000), y: datas[32] },
-								{ x: new Date(datas_hour[34]*1000), y: datas[34] },
-								{ x: new Date(datas_hour[36]*1000), y: datas[36] },
-								{ x: new Date(datas_hour[38]*1000), y: datas[38] },
-								{ x: new Date(datas_hour[40]*1000), y: datas[40] },
-								{ x: new Date(datas_hour[42]*1000), y: datas[42] },
-								{ x: new Date(datas_hour[44]*1000), y: datas[44] },
-								{ x: new Date(datas_hour[46]*1000), y: datas[46] },
-								{ x: new Date(datas_hour[48]*1000), y: datas[48] },
-								{ x: new Date(datas_hour[50]*1000), y: datas[50] },
-								{ x: new Date(datas_hour[52]*1000), y: datas[52] },
-								{ x: new Date(datas_hour[54]*1000), y: datas[54] },
-								{ x: new Date(datas_hour[56]*1000), y: datas[56] },
-								{ x: new Date(datas_hour[58]*1000), y: datas[58] },
-								{ x: new Date(datas_hour[60]*1000), y: datas[60] }
-								
-								
-							]
-						}]
-					});
-					chart.render();
+						})
+				
+				// ทำการดึงข้อมูลอุณหภูมิ (องศาฟาเรนไฮน์) จากฐานข้อมูลมาเก็บไว้ในตัวเเปล datas เเละนำค่าไปใช้
+				firebaseRef_tempf.on('value', function (data) {
+									const datas = Object.values(data.val());
+									console.log(datas);
 
-                })
+						// สำหรับโชว์กราฟ
+						// กราฟสำหรับโชว์อุณหภูมิ (องศาฟาเรนไฮน์)
 
-
-
-firebaseRef_tempc.on('value', function (data) {
-                	const datas = Object.values(data.val());
-                	console.log(datas);
-
-					// สำหรับโชว์กราฟ
-					// กราฟสำหรับโชว์ความชื้น
-
-					var chart = new CanvasJS.Chart("chartContainer6", {
-						animationEnabled: true,
-						theme: "wspeed2",
-						title:{
-							text: "อุณหภูมิ (องศาเซลเซียส)"
-						},
-						axisX:{  
-							//Try Changing to MMMM
-			              	valueFormatString: "HH:mm TT"
-					    },
-						data: [{        
-							type: "line",
-					      	indexLabelFontSize: 16,
-							dataPoints: [
-                            { x: new Date(datas_hour[0]*1000), y: datas[0] },
-								{ x: new Date(datas_hour[2]*1000), y: datas[2] },
-								{ x: new Date(datas_hour[4]*1000), y: datas[4] },
-								{ x: new Date(datas_hour[6]*1000), y: datas[6] },
-								{ x: new Date(datas_hour[8]*1000), y: datas[8] },
-								{ x: new Date(datas_hour[10]*1000), y: datas[10] },
-								{ x: new Date(datas_hour[12]*1000), y: datas[12] },
-								{ x: new Date(datas_hour[14]*1000), y: datas[14] },
-								{ x: new Date(datas_hour[16]*1000), y: datas[16] },
-								{ x: new Date(datas_hour[18]*1000), y: datas[18] },
-								{ x: new Date(datas_hour[20]*1000), y: datas[20] },
-								{ x: new Date(datas_hour[22]*1000), y: datas[22] },
-								{ x: new Date(datas_hour[24]*1000), y: datas[24] },
-								{ x: new Date(datas_hour[26]*1000), y: datas[26] },
-								{ x: new Date(datas_hour[28]*1000), y: datas[28] },
-								{ x: new Date(datas_hour[30]*1000), y: datas[30] },
-								{ x: new Date(datas_hour[32]*1000), y: datas[32] },
-								{ x: new Date(datas_hour[34]*1000), y: datas[34] },
-								{ x: new Date(datas_hour[36]*1000), y: datas[36] },
-								{ x: new Date(datas_hour[38]*1000), y: datas[38] },
-								{ x: new Date(datas_hour[40]*1000), y: datas[40] },
-								{ x: new Date(datas_hour[42]*1000), y: datas[42] },
-								{ x: new Date(datas_hour[44]*1000), y: datas[44] },
-								{ x: new Date(datas_hour[46]*1000), y: datas[46] },
-								{ x: new Date(datas_hour[48]*1000), y: datas[48] },
-								{ x: new Date(datas_hour[50]*1000), y: datas[50] },
-								{ x: new Date(datas_hour[52]*1000), y: datas[52] },
-								{ x: new Date(datas_hour[54]*1000), y: datas[54] },
-								{ x: new Date(datas_hour[56]*1000), y: datas[56] },
-								{ x: new Date(datas_hour[58]*1000), y: datas[58] },
-								{ x: new Date(datas_hour[60]*1000), y: datas[60] }
-								
-								
-							]
-						}]
-					});
-					chart.render();
-
-                })
-
-
-firebaseRef_tempf.on('value', function (data) {
-                	const datas = Object.values(data.val());
-                	console.log(datas);
-
-					// สำหรับโชว์กราฟ
-					// กราฟสำหรับโชว์ความชื้น
-
-					var chart = new CanvasJS.Chart("chartContainer7", {
-						animationEnabled: true,
-						theme: "phos",
-						title:{
-							text: "อุณหภูมิ (องศาฟาเรนไฮน์)"
-						},
-						axisX:{  
-							//Try Changing to MMMM
-			              	valueFormatString: "HH:mm TT"
-					    },
-						data: [{        
-							type: "line",
-					      	indexLabelFontSize: 16,
-							dataPoints: [
-                            { x: new Date(datas_hour[0]*1000), y: datas[0] },
-								{ x: new Date(datas_hour[2]*1000), y: datas[2] },
-								{ x: new Date(datas_hour[4]*1000), y: datas[4] },
-								{ x: new Date(datas_hour[6]*1000), y: datas[6] },
-								{ x: new Date(datas_hour[8]*1000), y: datas[8] },
-								{ x: new Date(datas_hour[10]*1000), y: datas[10] },
-								{ x: new Date(datas_hour[12]*1000), y: datas[12] },
-								{ x: new Date(datas_hour[14]*1000), y: datas[14] },
-								{ x: new Date(datas_hour[16]*1000), y: datas[16] },
-								{ x: new Date(datas_hour[18]*1000), y: datas[18] },
-								{ x: new Date(datas_hour[20]*1000), y: datas[20] },
-								{ x: new Date(datas_hour[22]*1000), y: datas[22] },
-								{ x: new Date(datas_hour[24]*1000), y: datas[24] },
-								{ x: new Date(datas_hour[26]*1000), y: datas[26] },
-								{ x: new Date(datas_hour[28]*1000), y: datas[28] },
-								{ x: new Date(datas_hour[30]*1000), y: datas[30] },
-								{ x: new Date(datas_hour[32]*1000), y: datas[32] },
-								{ x: new Date(datas_hour[34]*1000), y: datas[34] },
-								{ x: new Date(datas_hour[36]*1000), y: datas[36] },
-								{ x: new Date(datas_hour[38]*1000), y: datas[38] },
-								{ x: new Date(datas_hour[40]*1000), y: datas[40] },
-								{ x: new Date(datas_hour[42]*1000), y: datas[42] },
-								{ x: new Date(datas_hour[44]*1000), y: datas[44] },
-								{ x: new Date(datas_hour[46]*1000), y: datas[46] },
-								{ x: new Date(datas_hour[48]*1000), y: datas[48] },
-								{ x: new Date(datas_hour[50]*1000), y: datas[50] },
-								{ x: new Date(datas_hour[52]*1000), y: datas[52] },
-								{ x: new Date(datas_hour[54]*1000), y: datas[54] },
-								{ x: new Date(datas_hour[56]*1000), y: datas[56] },
-								{ x: new Date(datas_hour[58]*1000), y: datas[58] },
-								{ x: new Date(datas_hour[60]*1000), y: datas[60] }
-								
-								
-							]
-						}]
-					});
-					chart.render();
-
-                })
+							var chart = new CanvasJS.Chart("chartContainer7", {
+								animationEnabled: true,
+								theme: "phos",
+								title:{
+									text: "อุณหภูมิ (องศาฟาเรนไฮน์)"
+								},
+								axisX:{  
+									//เป็นการเเสดงค่าเวลาในเเกน X
+									valueFormatString: "HH:mm TT"
+								},
+								data: [{        
+									type: "line",
+									indexLabelFontSize: 16,
+									// นำค่าที่ดึงจากฐานข้อมูลมาวาดกราฟ โดยมีค่าเวลา เเละข้อมูล
+									dataPoints: [
+									{ x: new Date(datas_hour[0]*1000), y: datas[0] },
+										{ x: new Date(datas_hour[2]*1000), y: datas[2] },
+										{ x: new Date(datas_hour[4]*1000), y: datas[4] },
+										{ x: new Date(datas_hour[6]*1000), y: datas[6] },
+										{ x: new Date(datas_hour[8]*1000), y: datas[8] },
+										{ x: new Date(datas_hour[10]*1000), y: datas[10] },
+										{ x: new Date(datas_hour[12]*1000), y: datas[12] },
+										{ x: new Date(datas_hour[14]*1000), y: datas[14] },
+										{ x: new Date(datas_hour[16]*1000), y: datas[16] },
+										{ x: new Date(datas_hour[18]*1000), y: datas[18] },
+										{ x: new Date(datas_hour[20]*1000), y: datas[20] },
+										{ x: new Date(datas_hour[22]*1000), y: datas[22] },
+										{ x: new Date(datas_hour[24]*1000), y: datas[24] },
+										{ x: new Date(datas_hour[26]*1000), y: datas[26] },
+										{ x: new Date(datas_hour[28]*1000), y: datas[28] },
+										{ x: new Date(datas_hour[30]*1000), y: datas[30] },
+										{ x: new Date(datas_hour[32]*1000), y: datas[32] },
+										{ x: new Date(datas_hour[34]*1000), y: datas[34] },
+										{ x: new Date(datas_hour[36]*1000), y: datas[36] },
+										{ x: new Date(datas_hour[38]*1000), y: datas[38] },
+										{ x: new Date(datas_hour[40]*1000), y: datas[40] },
+										{ x: new Date(datas_hour[42]*1000), y: datas[42] },
+										{ x: new Date(datas_hour[44]*1000), y: datas[44] },
+										{ x: new Date(datas_hour[46]*1000), y: datas[46] },
+										{ x: new Date(datas_hour[48]*1000), y: datas[48] },
+										{ x: new Date(datas_hour[50]*1000), y: datas[50] },
+										{ x: new Date(datas_hour[52]*1000), y: datas[52] },
+										{ x: new Date(datas_hour[54]*1000), y: datas[54] },
+										{ x: new Date(datas_hour[56]*1000), y: datas[56] },
+										{ x: new Date(datas_hour[58]*1000), y: datas[58] },
+										{ x: new Date(datas_hour[60]*1000), y: datas[60] }
+										
+										
+									]
+								}]
+							});
+							//เป็นการสั่งให้กราฟเเสดงค่า
+							chart.render();
 })
-                	})
-		                })
-		                })
-                	})
+})
+})
+})
+})
+})
 
-            }
-            this.push = function (title, content) { }
-        }).controller('firebaseCtrl', function (firebaseService) {
-            firebaseService.initFirebase();
-            firebaseService.eventFirebase();
-        })
-    	</script>
+		}
+		this.push = function (title, content) { }
+	}).controller('firebaseCtrl', function (firebaseService) {
+		firebaseService.initFirebase();
+		firebaseService.eventFirebase();
+	})
+	</script>
 </head>
 
 <body ng-app="firebaseApp" >
@@ -700,7 +714,7 @@ firebaseRef_tempf.on('value', function (data) {
     <div class="main_page" ng-controller="firebaseCtrl">
         <!-- เป็นส่วนของ slidebar ที่เเสดงในหน้าเว็บเพจ -->
         <div class="sidebar">
-            <img src="pictures-for-soilsystem\logo.png" alt="">
+            <img src="picture-for-project\logo.png" alt="">
             <h3>Smart Soil Monitoring System</h3>
     
             <!-- เป็นส่วนของการที่จะลิงค์ไปหน้าถัดไป -->
@@ -726,6 +740,7 @@ firebaseRef_tempf.on('value', function (data) {
         </div>
         <div class="main">
 			<div ng-controller="firebaseCtrl">
+				<!-- เป็นส่วนเเสดงกราฟโดยจะเเสดงทั้งหมด 8 กราฟ เเบ่งออกเป็น 4 ROW 2 Corlum -->
 				<div class="graph">
 					<div id="chartContainer" style="height: 250px; width: 580px; text-align: center"><h1 style="text-align: center; color: #fff;"> Loading .... </h1></div>
 				</div>
