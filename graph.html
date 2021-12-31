@@ -204,7 +204,7 @@
 						},
 						axisX:{  
 							//Try Changing to MMMM
-			              	valueFormatString: "HH:MM:ss TT"
+			              	valueFormatString: "HH:mm TT"
 					    },
 						data: [{        
 							type: "line",
@@ -247,12 +247,8 @@
 						}]
 					});
 					chart.render();
-
-					var d = new Date();
-					document.getElementById("demo").innerHTML = d;
 					})
 				
-               
             firebaseRef_mois.on('value', function (data) {
                 	const datas = Object.values(data.val());
                 	console.log(datas);
@@ -268,7 +264,7 @@
 						},
 						axisX:{  
 							//Try Changing to MMMM
-			              	valueFormatString: "HH:MM:ss TT"
+			              	valueFormatString: "HH:mm TT"
 					    },
 						data: [{        
 							type: "line",
@@ -331,7 +327,7 @@
 						},
 						axisX:{  
 							//Try Changing to MMMM
-			              	valueFormatString: "HH:MM:ss TT"
+			              	valueFormatString: "HH:mm TT"
 					    },
 						data: [{        
 							type: "line",
@@ -391,7 +387,7 @@
 						},
 						axisX:{  
 							//Try Changing to MMMM
-			              	valueFormatString: "HH:MM:ss TT"
+			              	valueFormatString: "HH:mm TT"
 					    },
 						data: [{        
 							type: "line",
@@ -451,7 +447,7 @@
 						},
 						axisX:{  
 							//Try Changing to MMMM
-			              	valueFormatString: "HH:MM:ss TT"
+			              	valueFormatString: "HH:mm TT"
 					    },
 						data: [{        
 							type: "line",
@@ -514,7 +510,7 @@
 						},
 						axisX:{  
 							//Try Changing to MMMM
-			              	valueFormatString: "HH:MM:ss TT"
+			              	valueFormatString: "HH:mm TT"
 					    },
 						data: [{        
 							type: "line",
@@ -577,7 +573,7 @@ firebaseRef_tempc.on('value', function (data) {
 						},
 						axisX:{  
 							//Try Changing to MMMM
-			              	valueFormatString: "HH:MM:ss TT"
+			              	valueFormatString: "HH:mm TT"
 					    },
 						data: [{        
 							type: "line",
@@ -639,7 +635,7 @@ firebaseRef_tempf.on('value', function (data) {
 						},
 						axisX:{  
 							//Try Changing to MMMM
-			              	valueFormatString: "HH:MM:ss TT"
+			              	valueFormatString: "HH:mm TT"
 					    },
 						data: [{        
 							type: "line",
