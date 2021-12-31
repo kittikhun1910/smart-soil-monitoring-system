@@ -108,3 +108,24 @@ body{
     color: #f5efe9c9;
     display: block;
 }
+
+.graph {
+    float: left;
+    width: 580px;
+    height: 250px;
+    margin: 3px;
+}
+
+.graph:hover{
+    box-shadow: 0 0 5px #c0df96ec, 0 0 25px #c0df96ec, 0 0 50px #c0df96ec,
+    0 0 200px #c0df96ec;
+}
+
+.main{
+    margin-left: 50px;
+    margin-top: 50px;
+}
+
+.main_page {
+    width: 1517px;
+}
